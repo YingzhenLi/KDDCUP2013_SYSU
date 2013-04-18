@@ -1,0 +1,135 @@
+             List of relations
+ Schema |      Name      | Type  |  Owner   
+--------+----------------+-------+----------
+ public | author         | table | postgres  247203
+ public | conference     | table | postgres  4545
+ public | journal        | table | postgres  15151
+ public | paper          | table | postgres  2257249
+ public | paperauthor    | table | postgres  12775821
+ public | trainconfirmed | table | postgres  112462
+ public | traindeleted   | table | postgres  123447
+ public | validpaper     | table | postgres  90088
+
+
+            Table "public.author"
+   Column    |       Type        | Modifiers 
+-------------+-------------------+-----------
+ id          | bigint            | not null
+ name        | character varying | 
+ affiliation | character varying | 
+Indexes:
+    "author_pkey" PRIMARY KEY, btree (id)
+example:
+ id |     name      | affiliation 
+----+---------------+-------------
+  9 | Ernest Jordan | 
+ 14 | K. MORIBE     | 
+ 15 | D. Jakominich | 
+
+
+         Table "public.conference"
+  Column   |       Type        | Modifiers 
+-----------+-------------------+-----------
+ id        | bigint            | not null
+ shortname | character varying | 
+ fullname  | character varying | 
+ homepage  | character varying | 
+Indexes:
+    "conference_pkey" PRIMARY KEY, btree (id)
+example:
+ id | shortname |                               fullname                               |                            homepage                             
+----+-----------+----------------------------------------------------------------------+-----------------------------------------------------------------
+  1 | IADIS     | International Association for Development of the Information Society | 
+  2 | IADT      | Issues and Applications of Database Technology                       | http://www.informatik.uni-trier.de/~ley/db/conf/iadt/index.html
+  4 |           | IBM Germany Scientific Symposium Series                              | http://www.informatik.uni-trier.de/~ley/db/conf/ibm/index.html
+
+
+          Table "public.journal"
+  Column   |       Type        | Modifiers 
+-----------+-------------------+-----------
+ id        | bigint            | not null
+ shortname | character varying | 
+ fullname  | character varying | 
+ homepage  | character varying | 
+Indexes:
+    "journal_pkey" PRIMARY KEY, btree (id)
+example:
+ id | shortname |                                 fullname                                  |                     homepage                      
+----+-----------+---------------------------------------------------------------------------+---------------------------------------------------
+  1 | ICOM      | Zeitschrift Für Interaktive Und Kooperative Medien                        | http://www.i-com-media.de
+  2 | AEPIA     | Inteligencia Artificial,revista Iberoamericana De Inteligencia Artificial | http://aepia.dsic.upv.es/revista/
+  3 | IBMRD     | Ibm Journal of Research and Development                                   | http://www-tr.watson.ibm.com/journal/rdindex.html
+
+
+             Table "public.paper"
+    Column    |       Type        | Modifiers 
+--------------+-------------------+-----------
+ id           | bigint            | not null
+ title        | character varying | 
+ year         | bigint            | 
+ conferenceid | bigint            | 
+ journalid    | bigint            | 
+ keyword      | character varying | 
+Indexes:
+    "paper_pkey" PRIMARY KEY, btree (id)
+example:
+ id |                          title                          | year | conferenceid | journalid |                            keyword                             
+----+---------------------------------------------------------+------+--------------+-----------+----------------------------------------------------------------
+  1 | Stitching videos streamed by mobile phones in real-time | 2009 |          167 |         0 | mobile video capturing|real-time|video stitching
+  2 | A nonlocal convection–diffusion equation                | 2007 |            0 |      7234 | Nonlocal diffusion; Convection–diffusion; Asymptotic behaviour
+  3 | Area Effects in Cepaea                                  | 1963 |            0 |     16867 | 
+
+
+         Table "public.paperauthor"
+   Column    |       Type        | Modifiers 
+-------------+-------------------+-----------
+ paperid     | bigint            | 
+ authorid    | bigint            | 
+ name        | character varying | 
+ affiliation | character varying | 
+example:
+ paperid | authorid |       name        |          affiliation           
+---------+----------+-------------------+--------------------------------
+       1 |   521630 | Ayman Kaheel      | Cairo Microsoft Innovation Lab
+       1 |   972575 | Mahmoud Refaat    | Cairo Microsoft Innovation Lab
+       1 |  1528710 | Ahmed Abdul-hamid | Cairo Microsoft Innovation Lab
+
+
+Table "public.trainconfirmed"  (the author confirmed that the paper is his/her work.)
+  Column  |  Type  | Modifiers 
+----------+--------+-----------
+ authorid | bigint | 
+ paperid  | bigint | 
+example:
+ authorid | paperid 
+----------+---------
+      826 |  220293
+      826 |  379873
+      826 |  384468
+
+
+  Table "public.traindeleted" (the author confirmed that the paper is NOT his/her work.)
+  Column  |  Type  | Modifiers 
+----------+--------+-----------
+ authorid | bigint | 
+ paperid  | bigint | 
+example:
+ authorid | paperid 
+----------+---------
+      826 |   25733
+      826 |   47276
+      826 |   77012
+
+
+   Table "public.validpaper"
+  Column  |  Type  | Modifiers 
+----------+--------+-----------
+ authorid | bigint | 
+ paperid  | bigint | 
+example:
+ authorid | paperid 
+----------+---------
+       55 |    2507
+       55 |   15471
+       55 |   19294
+

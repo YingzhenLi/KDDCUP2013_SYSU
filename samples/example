@@ -1,0 +1,284 @@
+author name: Emanuele Buratti
+papers that the author confirmed as his/her work:
+
+public.author
+id  |       name       | affiliation 
+-----+------------------+-------------
+ 826 | Emanuele Buratti | 
+
+publications:
+       name       | id  | paperid |                                                            title                                                            
+------------------+-----+---------+-----------------------------------------------------------------------------------------------------------------------------
+ Emanuele Buratti | 826 |  220293 | Test lactulose/mannitol (L/M): Diagnostic et surveillance de la maladie inflammatoire chronique de l'intestin chez l'enfant
+ Emanuele Buratti | 826 |  379873 | Reconformable reflector for millimetre and submillimetre-wave reflector antennas
+ Emanuele Buratti | 826 |  384468 | IL DIABETE VISTO DALL'INTESTINO
+ Emanuele Buratti | 826 |  565252 | Serologic response to Bartonella henselae in patients with cat scratch disease and in sick and healthy children
+ Emanuele Buratti | 826 |  939749 | P57 Atorvastatin on lipids and lipoproteins after an oral fat load in type 2 diabetic patients
+ Emanuele Buratti | 826 |  944658 | C40 Influence of LP(a) on mortality and morbidity for diabetic complications: 5-Years follow -up
+ Emanuele Buratti | 826 | 1164760 | High risk of Helicobacter pylori infection associated with cow's milk antibodies in young diabetics
+ Emanuele Buratti | 826 | 1659466 | PREVALENCE OF COELIAC DIESASE IN FIRST DEGREE RELATIVES OF NON-COELIAC INSULIN DEPENDENT DIABETES MELLITUS SUBJECTS.: 
+ Emanuele Buratti | 826 | 1810229 | Aortic endocarditis associated with a perforated septal membranous aneurysm in a boxer dog
+ Emanuele Buratti | 826 | 1832762 | L'apoptosi nella fisiologia e nella patologia umana
+ Emanuele Buratti | 826 | 1982963 | Serologic response to Bartonella henselae in patients with cat scratch disease and in sick and healthy children
+ Emanuele Buratti | 826 | 1987959 | Undiagnosed coeliac disease and risk of autoimmune disorders in subjects with Type I diabetes mellitus
+(12 rows)
+
+pulications on (proceedings of) conference (confirmed): 
+       name       | id  | paperid | shortname |                         fullname                         |  id  
+------------------+-----+---------+-----------+----------------------------------------------------------+------
+ Emanuele Buratti | 826 |  379873 | APSURSI   | Antennas and Propagation Society International Symposium | 4304
+(1 rows)
+
+publications on journals (confirmed):
+       name       | id  | paperid |          shortname          |                      fullname                       |  id  
+------------------+-----+---------+-----------------------------+-----------------------------------------------------+------
+ Emanuele Buratti | 826 |  220293 | ARCHIVES PEDIATRIE          | Archives De Pediatrie                               | 2641
+ Emanuele Buratti | 826 |  565252 | ACTA PAEDIAT                | Acta Paediatrica                                    | 2432
+ Emanuele Buratti | 826 |  939749 |                             | Atherosclerosis                                     | 2661
+ Emanuele Buratti | 826 |  944658 |                             | Atherosclerosis                                     | 2661
+ Emanuele Buratti | 826 | 1164760 | ACTA PAEDIAT                | Acta Paediatrica                                    | 2432
+ Emanuele Buratti | 826 | 1659466 | J PEDIAT GASTROENTEROL NUTR | Journal of Pediatric Gastroenterology and Nutrition | 3694
+ Emanuele Buratti | 826 | 1810229 | J SMALL ANIM PRACT          | Journal of Small Animal Practice                    | 9124
+ Emanuele Buratti | 826 | 1982963 | ACTA PAEDIAT                | Acta Paediatrica                                    | 2432
+ Emanuele Buratti | 826 | 1987959 |                             | Diabetologia                                        | 3057
+(9 rows)
+
+publications which the author deleted:
+       name       | id  | paperid |                                                              title                                                 
+              
+------------------+-----+---------+--------------------------------------------------------------------------------------------------------------------
+--------------
+ Emanuele Buratti | 826 |   25733 | Mammalian cell expression of malaria merozoite surface proteins and experimental DNA and RNA immunisation
+ Emanuele Buratti | 826 |   47276 | The secondary structure of the human immunodeficiency virus type 1 transcript modulates viral splicing and infectiv
+ity
+ Emanuele Buratti | 826 |   77012 | InTRONs in biotech
+ Emanuele Buratti | 826 |   79468 | Low U1 snRNP dependence at the<i>NF1</i>exon 29 donor splice site
+ Emanuele Buratti | 826 |   87141 | Chapter 1 The Molecular Links Between TDP‐43 Dysfunction and Neurodegeneration
+ Emanuele Buratti | 826 |  101385 | Progranulin mediates caspase-dependent cleavage of TAR DNA binding protein-43
+ Emanuele Buratti | 826 |  104556 | A new type of mutation causes a splicing defect in ATM
+ Emanuele Buratti | 826 |  111260 | 
+ Emanuele Buratti | 826 |  116923 | Aberrant cleavage of TDP-43 enhances aggregation and cellular toxicity
+ Emanuele Buratti | 826 |  118648 | P1-140: Aggregation of phosphorylated and ubiquitinated TDP-43 in SH-SY5Y cells
+ Emanuele Buratti | 826 |  228773 | 
+ Emanuele Buratti | 826 |  295435 | Evolutionary connections between coding and splicing regulatory regions in the fibronectin EDA exon
+ Emanuele Buratti | 826 |  300715 | Functional analysis of the interaction between HCV 5'UTR and putative subunits of eukaryotic translation initiation
+ factor eIF3
+ Emanuele Buratti | 826 |  302130 | Ab initio prediction of mutation-induced cryptic splice-site activation and exon skipping
+ Emanuele Buratti | 826 |  310637 | RNA folding affects the recruitment of SR proteins by mouse and human polypurinic enhancer elements in the fibronec
+tin EDA exon
+ Emanuele Buratti | 826 |  314641 | TDP-43 in skeletal muscle of patients affected with amyotrophic lateral sclerosis
+ Emanuele Buratti | 826 |  338324 | Influence of correct secondary and tertiary RNA folding on the binding of cellular factors to the HCV IRES
+ Emanuele Buratti | 826 |  373545 | Mutation profile of the GAA gene in 40 Italian patients with late onset glycogen storage disease type II
+ Emanuele Buratti | 826 |  426723 | 
+ Emanuele Buratti | 826 |  447937 | 
+ Emanuele Buratti | 826 |  510474 | cDNA cloning of the HML-C phosphoprotein, a nclear protein associated with neoplastic and undifferentiated phenotyp
+es
+ Emanuele Buratti | 826 |  517776 | Polypyrimidine tract binding protein regulates alternative splicing of an aberrant pseudoexon in NF1
+ Emanuele Buratti | 826 |  533641 | Induction of murine mucosal CCR5-reactive antibodies as an anti-human immunodeficiency virus strategy
+ Emanuele Buratti | 826 |  538977 | 
+ Emanuele Buratti | 826 |  592575 | TDP-43 Autoregulation: Implications for Disease
+ Emanuele Buratti | 826 |  600927 | Structural determinants of the cellular localization and shuttling of TDP-43
+ Emanuele Buratti | 826 |  672626 | RNA structure is a key regulatory element in pathological ATM and CFTR pseudoexon inclusion events
+ Emanuele Buratti | 826 |  698805 | The pathological splicing mutation c.6792C>G in NF1 exon 37 causes a change of tenancy between antagonistic splicing factors
+ Emanuele Buratti | 826 |  700683 | TDP-43 is recruited to stress granules in conditions of oxidative insult
+ Emanuele Buratti | 826 |  723435 | Intracellular trafficking of TDP-43 and its potential role in disease
+ Emanuele Buratti | 826 |  746784 | Improved reactivity of hepatitis C virus core protein epitopes in a conformational antigen-presenting system
+ Emanuele Buratti | 826 |  785562 | Defective splicing, disease and therapy: searching for master checkpoints in exon definition
+ Emanuele Buratti | 826 |  808429 | Conformational display of two neutralizing epitopes of HIV-1 gp41 on the Flock House virus capsid protein
+ Emanuele Buratti | 826 |  890199 | 
+ Emanuele Buratti | 826 |  897009 | Functional properties and evolutionary splicing constraints on a composite exonic regulatory element of splicing in CFTR exon 12
+ Emanuele Buratti | 826 |  913794 | Molluscan sperm proteins: Ensis minor
+ Emanuele Buratti | 826 |  936615 | DBASS3 and DBASS5: databases of aberrant 3'- and 5'-splice sites
+ Emanuele Buratti | 826 |  945411 | Functional mapping of the interaction between TDP-43 and hnRNP A2 in vivo
+ Emanuele Buratti | 826 | 1026529 | The intronic splicing code: multiple factors involved in ATM pseudoexon definition
+ Emanuele Buratti | 826 | 1034798 | Phosphorylated TDP-43 in frontotemporal lobar degeneration and amyotrophic lateral sclerosis
+ Emanuele Buratti | 826 | 1047040 | 
+ Emanuele Buratti | 826 | 1114058 | In vivo translational efficiency of different hepatitis C virus 5'-UTRs
+ Emanuele Buratti | 826 | 1157180 | P2-192: Accumulation of phosphorylated TDP-43 in neurodegenerative disorders
+ Emanuele Buratti | 826 | 1204132 | Identification of a novel vertebrate homeobox gene expressed in haematopoietic cells
+ Emanuele Buratti | 826 | 1217013 | Nuclear factor TDP-43 and SR proteins promote in vitro and in vivo CFTR exon 9 skipping
+ Emanuele Buratti | 826 | 1221505 | 
+ Emanuele Buratti | 826 | 1222881 | 
+ Emanuele Buratti | 826 | 1223801 | SR protein-mediated inhibition of CFTR exon 9 inclusion: molecular characterization of the intronic splicing silencer
+ Emanuele Buratti | 826 | 1236661 | ETR-3 is a major regulator of CFTR pre-mRNA splicing
+ Emanuele Buratti | 826 | 1243916 | Missed threads
+ Emanuele Buratti | 826 | 1296119 | Nuclear factor TDP-43 can affect selected microRNA levels: TDP-43 and miRNA regulation
+ Emanuele Buratti | 826 | 1351053 | Human, , and  TDP43: Nucleic Acid Binding Properties and Splicing Regulatory Function
+ Emanuele Buratti | 826 | 1413981 | UG Repeats/TDP-43 Interactions near 5' Splice Sites Exert Unpredictable Effects on Splicing Modulation
+ Emanuele Buratti | 826 | 1487102 | TARDBP Mutations in Frontotemporal Lobar Degeneration: Frequency, Clinical Features, and Disease Course
+ Emanuele Buratti | 826 | 1503751 | High frequency of<i>TARDBP</i>gene mutations in Italian patients with amyotrophic lateral sclerosis
+ Emanuele Buratti | 826 | 1516844 | 
+ Emanuele Buratti | 826 | 1573814 | TDP-43 in skeletal muscle of patients affected with amyotrophic lateral sclerosis
+Emanuele Buratti | 826 | 1582180 | V3 loop core region serotyping of HIV-1 infected patients using the FHV epitope presenting system
+ Emanuele Buratti | 826 | 1591758 | Human, Drosophila, and C.elegans TDP43: nucleic acid binding properties and splicing regulatory function
+ Emanuele Buratti | 826 | 1592682 | CELF proteins regulate CFTR pre-mRNA splicing: essential role of the divergent domain of ETR-3
+ Emanuele Buratti | 826 | 1595073 | TDP-43 mutations in familial and sporadic amyotrophic lateral sclerosis
+ Emanuele Buratti | 826 | 1601536 | 
+ Emanuele Buratti | 826 | 1638967 | Multiple roles of TDP-43 in gene expression, splicing regulation, and human disease
+ Emanuele Buratti | 826 | 1676317 | Alternative splicing: role of pseudoexons in human disease and potential therapeutic strategies
+ Emanuele Buratti | 826 | 1685169 | 
+ Emanuele Buratti | 826 | 1707309 | Mutation within<i>TARDBP</i>leads to Frontotemporal Dementia without motor neuron disease
+ Emanuele Buratti | 826 | 1778983 | Can a 'patch' in a skipped exon make the pre-mRNA splicing machine run better?
+ Emanuele Buratti | 826 | 1836292 | Neurotoxic effects of TDP-43 overexpression in C. elegans
+ Emanuele Buratti | 826 | 1866316 | Phosphorylated and ubiquitinated TDP-43 pathological inclusions in ALS and FTLD-U are recapitulated in SH-SY5Y cells
+ Emanuele Buratti | 826 | 1872891 | Structural and functional characterization of the 5' region of subgenomic RNA5 of cucumber mosaic virus
+ Emanuele Buratti | 826 | 1905067 | NF1 mRNA biogenesis: Effect of the genomic milieu in splicing regulation of the NF1 exon 37 region
+ Emanuele Buratti | 826 | 1906261 | Influence of RNA Secondary Structure on the Pre-mRNA Splicing Process
+ Emanuele Buratti | 826 | 1985278 | 
+ Emanuele Buratti | 826 | 2108882 | Neurons don't appreciate FUSsing in the cytoplasm
+ Emanuele Buratti | 826 | 2117473 | Depletion of TDP 43 overrides the need for exonic and intronic splicing enhancers in the human apoA-II gene
+ Emanuele Buratti | 826 | 2140936 | Another step forward for SELEXive splicing
+ Emanuele Buratti | 826 | 2149742 | 
+ Emanuele Buratti | 826 | 2182681 | Functional analysis of cis-acting elements regulating the alternative splicing of human CFTR exon 9
+ Emanuele Buratti | 826 | 2186283 | 1041 POSTER Expression of Tumour-promoting Cysteine Rich 61 is Regulated by Tra2-|i1 and Acidosis
+ Emanuele Buratti | 826 | 2208076 | Abnormal phosphorylation of Ser409/410 of TDP-43 in FTLD-U and ALS
+(80 rows)
+
+
+
+publications of the author in the database (some maybe mis-assigned!) (only 76 distinct papers!)
+       name       | authorid | paperid |                                                              title                                            
+                   
+------------------+----------+---------+---------------------------------------------------------------------------------------------------------------
+-------------------
+ Emanuele Buratti |      826 |   25733 | Mammalian cell expression of malaria merozoite surface proteins and experimental DNA and RNA immunisation
+ Emanuele Buratti |      826 |   25733 | Mammalian cell expression of malaria merozoite surface proteins and experimental DNA and RNA immunisation
+ Emanuele Buratti |      826 |   47276 | The secondary structure of the human immunodeficiency virus type 1 transcript modulates viral splicing and inf
+ectivity
+ Emanuele Buratti |      826 |   77012 | InTRONs in biotech
+ Emanuele Buratti |      826 |   77012 | InTRONs in biotech
+ Emanuele Buratti |      826 |   79468 | Low U1 snRNP dependence at the<i>NF1</i>exon 29 donor splice site
+ Emanuele Buratti |      826 |   87141 | Chapter 1 The Molecular Links Between TDP‐43 Dysfunction and Neurodegeneration
+ Emanuele Buratti |      826 |  101385 | Progranulin mediates caspase-dependent cleavage of TAR DNA binding protein-43
+ E. Buratti       |      826 |  101385 | Progranulin mediates caspase-dependent cleavage of TAR DNA binding protein-43
+ Emanuele Buratti |      826 |  104556 | A new type of mutation causes a splicing defect in ATM
+ Emanuele Buratti |      826 |  104556 | A new type of mutation causes a splicing defect in ATM
+ Emanuele BURATTI |      826 |  111260 | 
+ Emanuele Buratti |      826 |  116923 | Aberrant cleavage of TDP-43 enhances aggregation and cellular toxicity
+ Emanuele Buratti |      826 |  118648 | P1-140: Aggregation of phosphorylated and ubiquitinated TDP-43 in SH-SY5Y cells
+ Emanuele Buratti |      826 |  220293 | Test lactulose/mannitol (L/M): Diagnostic et surveillance de la maladie inflammatoire chronique de l'intestin 
+chez l'enfant
+ Emanuele Buratti |      826 |  228773 | 
+ Serena Zacchigna |      826 |  228773 | 
+ Emanuele Buratti |      826 |  295435 | Evolutionary connections between coding and splicing regulatory regions in the fibronectin EDA exon
+ Emanuele Buratti |      826 |  300715 | Functional analysis of the interaction between HCV 5'UTR and putative subunits of eukaryotic translation initi
+ation factor eIF3
+ Emanuele Buratti |      826 |  302130 | Ab initio prediction of mutation-induced cryptic splice-site activation and exon skipping
+ Emanuele Buratti |      826 |  302130 | Ab initio prediction of mutation-induced cryptic splice-site activation and exon skipping
+ Emanuele Buratti |      826 |  310637 | RNA folding affects the recruitment of SR proteins by mouse and human polypurinic enhancer elements in the fib
+ronectin EDA exon
+ Emanuele Buratti |      826 |  314641 | TDP-43 in skeletal muscle of patients affected with amyotrophic lateral sclerosis
+ E. Buratti       |      826 |  338324 | Influence of correct secondary and tertiary RNA folding on the binding of cellular factors to the HCV IRES
+ Emanuele Buratti |      826 |  338324 | Influence of correct secondary and tertiary RNA folding on the binding of cellular factors to the HCV IRES
+ Emanuele Buratti |      826 |  373545 | Mutation profile of the GAA gene in 40 Italian patients with late onset glycogen storage disease type II
+ E. Buratti       |      826 |  373545 | Mutation profile of the GAA gene in 40 Italian patients with late onset glycogen storage disease type II
+ Emanuele Buratti |      826 |  379873 | Reconformable reflector for millimetre and submillimetre-wave reflector antennas
+ Emanuele Buratti |      826 |  384468 | IL DIABETE VISTO DALL'INTESTINO
+ Emanuele Buratti |      826 |  426723 | 
+ Emanuele Buratti |      826 |  447937 | 
+ E. Buratti       |      826 |  447937 | 
+ E. Buratti       |      826 |  510474 | cDNA cloning of the HML-C phosphoprotein, a nclear protein associated with neoplastic and undifferentiated phenotypes
+ Emanuele Buratti |      826 |  510474 | cDNA cloning of the HML-C phosphoprotein, a nclear protein associated with neoplastic and undifferentiated phenotypes
+ Emanuele Buratti |      826 |  517776 | Polypyrimidine tract binding protein regulates alternative splicing of an aberrant pseudoexon in NF1
+ E. Buratti       |      826 |  533641 | Induction of murine mucosal CCR5-reactive antibodies as an anti-human immunodeficiency virus strategy
+ Emanuele Buratti |      826 |  533641 | Induction of murine mucosal CCR5-reactive antibodies as an anti-human immunodeficiency virus strategy
+ Emanuele Buratti |      826 |  538977 | 
+ Emanuele Buratti |      826 |  538977 | 
+ Emanuele Buratti |      826 |  565252 | Serologic response to Bartonella henselae in patients with cat scratch disease and in sick and healthy children
+ Emanuele Buratti |      826 |  592575 | TDP-43 Autoregulation: Implications for Disease
+ Emanuele Buratti |      826 |  592575 | TDP-43 Autoregulation: Implications for Disease
+ Emanuele Buratti |      826 |  600927 | Structural determinants of the cellular localization and shuttling of TDP-43
+ Emanuele Buratti |      826 |  600927 | Structural determinants of the cellular localization and shuttling of TDP-43
+ Emanuele Buratti |      826 |  672626 | RNA structure is a key regulatory element in pathological ATM and CFTR pseudoexon inclusion events
+ Emanuele Buratti |      826 |  698805 | The pathological splicing mutation c.6792C>G in NF1 exon 37 causes a change of tenancy between antagonistic splicing factors
+ Emanuele Buratti |      826 |  700683 | TDP-43 is recruited to stress granules in conditions of oxidative insult
+ Emanuele Buratti |      826 |  723435 | Intracellular trafficking of TDP-43 and its potential role in disease
+ E. Buratti       |      826 |  746784 | Improved reactivity of hepatitis C virus core protein epitopes in a conformational antigen-presenting system
+ Emanuele Buratti |      826 |  746784 | Improved reactivity of hepatitis C virus core protein epitopes in a conformational antigen-presenting system
+ Emanuele Buratti |      826 |  785562 | Defective splicing, disease and therapy: searching for master checkpoints in exon definition
+ Emanuele Buratti |      826 |  785562 | Defective splicing, disease and therapy: searching for master checkpoints in exon definition
+ E. Buratti       |      826 |  808429 | Conformational display of two neutralizing epitopes of HIV-1 gp41 on the Flock House virus capsid protein
+ Emanuele Buratti |      826 |  808429 | Conformational display of two neutralizing epitopes of HIV-1 gp41 on the Flock House virus capsid protein
+ Emanuele Buratti |      826 |  890199 | 
+ Emanuele Buratti |      826 |  897009 | Functional properties and evolutionary splicing constraints on a composite exonic regulatory element of splicing in CFTR exon 12
+ Emanuele Buratti |      826 |  897009 | Functional properties and evolutionary splicing constraints on a composite exonic regulatory element of splicing in CFTR exon 12
+ Emanuele Buratti |      826 |  913794 | Molluscan sperm proteins: Ensis minor
+ Emanuele Buratti |      826 |  936615 | DBASS3 and DBASS5: databases of aberrant 3'- and 5'-splice sites
+ Emanuele Buratti |      826 |  939749 | P57 Atorvastatin on lipids and lipoproteins after an oral fat load in type 2 diabetic patients
+ Emanuele Buratti |      826 |  944658 | C40 Influence of LP(a) on mortality and morbidity for diabetic complications: 5-Years follow -up
+ Emanuele Buratti |      826 |  945411 | Functional mapping of the interaction between TDP-43 and hnRNP A2 in vivo
+ Emanuele Buratti |      826 |  945411 | Functional mapping of the interaction between TDP-43 and hnRNP A2 in vivo
+ Emanuele Buratti |      826 | 1026529 | The intronic splicing code: multiple factors involved in ATM pseudoexon definition
+ Emanuele Buratti |      826 | 1034798 | Phosphorylated TDP-43 in frontotemporal lobar degeneration and amyotrophic lateral sclerosis
+ E. Buratti       |      826 | 1047040 | 
+ Emanuele Buratti |      826 | 1047040 | 
+ Emanuele Buratti |      826 | 1114058 | In vivo translational efficiency of different hepatitis C virus 5'-UTRs
+ E. Buratti       |      826 | 1114058 | In vivo translational efficiency of different hepatitis C virus 5'-UTRs
+ Emanuele Buratti |      826 | 1157180 | P2-192: Accumulation of phosphorylated TDP-43 in neurodegenerative disorders
+ Emanuele Buratti |      826 | 1164760 | High risk of Helicobacter pylori infection associated with cow's milk antibodies in young diabetics
+ Emanuele Buratti |      826 | 1204132 | Identification of a novel vertebrate homeobox gene expressed in haematopoietic cells
+ Emanuele Buratti |      826 | 1217013 | Nuclear factor TDP-43 and SR proteins promote in vitro and in vivo CFTR exon 9 skipping
+ E. Buratti       |      826 | 1217013 | Nuclear factor TDP-43 and SR proteins promote in vitro and in vivo CFTR exon 9 skipping
+ E. Buratti       |      826 | 1221505 | 
+ Emanuele Buratti |      826 | 1221505 | 
+ Emanuele Buratti |      826 | 1222881 | 
+ Emanuele Buratti |      826 | 1222881 | 
+ Emanuele Buratti |      826 | 1223801 | SR protein-mediated inhibition of CFTR exon 9 inclusion: molecular characterization of the intronic splicing silencer
+ Emanuele Buratti |      826 | 1223801 | SR protein-mediated inhibition of CFTR exon 9 inclusion: molecular characterization of the intronic splicing silencer
+ Emanuele Buratti |      826 | 1236661 | ETR-3 is a major regulator of CFTR pre-mRNA splicing
+ E. Buratti       |      826 | 1236661 | ETR-3 is a major regulator of CFTR pre-mRNA splicing
+ Emanuele Buratti |      826 | 1243916 | Missed threads
+ Emanuele Buratti |      826 | 1243916 | Missed threads
+Emanuele Buratti |      826 | 1296119 | Nuclear factor TDP-43 can affect selected microRNA levels: TDP-43 and miRNA regulation
+ E BURATTI        |      826 | 1351053 | Human, , and  TDP43: Nucleic Acid Binding Properties and Splicing Regulatory Function
+ Emanuele Buratti |      826 | 1351053 | Human, , and  TDP43: Nucleic Acid Binding Properties and Splicing Regulatory Function
+ Emanuele Buratti |      826 | 1413981 | UG Repeats/TDP-43 Interactions near 5' Splice Sites Exert Unpredictable Effects on Splicing Modulation
+ E. Buratti       |      826 | 1487102 | TARDBP Mutations in Frontotemporal Lobar Degeneration: Frequency, Clinical Features, and Disease Course
+ Emanuele Buratti |      826 | 1487102 | TARDBP Mutations in Frontotemporal Lobar Degeneration: Frequency, Clinical Features, and Disease Course
+ E. Buratti       |      826 | 1503751 | High frequency of<i>TARDBP</i>gene mutations in Italian patients with amyotrophic lateral sclerosis
+ Emanuele Buratti |      826 | 1503751 | High frequency of<i>TARDBP</i>gene mutations in Italian patients with amyotrophic lateral sclerosis
+ Emanuele Buratti |      826 | 1516844 | 
+ Emanuele Buratti |      826 | 1573814 | TDP-43 in skeletal muscle of patients affected with amyotrophic lateral sclerosis
+ E. Buratti       |      826 | 1582180 | V3 loop core region serotyping of HIV-1 infected patients using the FHV epitope presenting system
+ Emanuele Buratti |      826 | 1582180 | V3 loop core region serotyping of HIV-1 infected patients using the FHV epitope presenting system
+ Emanuele Buratti |      826 | 1591758 | Human, Drosophila, and C.elegans TDP43: nucleic acid binding properties and splicing regulatory function
+ Emanuele Buratti |      826 | 1591758 | Human, Drosophila, and C.elegans TDP43: nucleic acid binding properties and splicing regulatory function
+ Emanuele Buratti |      826 | 1592682 | CELF proteins regulate CFTR pre-mRNA splicing: essential role of the divergent domain of ETR-3
+ E. Buratti       |      826 | 1592682 | CELF proteins regulate CFTR pre-mRNA splicing: essential role of the divergent domain of ETR-3
+ Emanuele Buratti |      826 | 1595073 | TDP-43 mutations in familial and sporadic amyotrophic lateral sclerosis
+ Emanuele Buratti |      826 | 1601536 | 
+ Emanuele Buratti |      826 | 1638967 | Multiple roles of TDP-43 in gene expression, splicing regulation, and human disease
+ Emanuele Buratti |      826 | 1659466 | PREVALENCE OF COELIAC DIESASE IN FIRST DEGREE RELATIVES OF NON-COELIAC INSULIN DEPENDENT DIABETES MELLITUS SUBJECTS.: 
+ Emanuele Buratti |      826 | 1676317 | Alternative splicing: role of pseudoexons in human disease and potential therapeutic strategies
+ Emanuele Buratti |      826 | 1685169 | 
+ E. Buratti       |      826 | 1685169 | 
+ E. Buratti       |      826 | 1707309 | Mutation within<i>TARDBP</i>leads to Frontotemporal Dementia without motor neuron disease
+ Emanuele Buratti |      826 | 1707309 | Mutation within<i>TARDBP</i>leads to Frontotemporal Dementia without motor neuron disease
+ Emanuele Buratti |      826 | 1778983 | Can a 'patch' in a skipped exon make the pre-mRNA splicing machine run better?
+ Emanuele Buratti |      826 | 1810229 | Aortic endocarditis associated with a perforated septal membranous aneurysm in a boxer dog
+ Emanuele Buratti |      826 | 1832762 | L'apoptosi nella fisiologia e nella patologia umana
+ Emanuele Buratti |      826 | 1836292 | Neurotoxic effects of TDP-43 overexpression in C. elegans
+ E. Buratti       |      826 | 1836292 | Neurotoxic effects of TDP-43 overexpression in C. elegans
+ Emanuele Buratti |      826 | 1866316 | Phosphorylated and ubiquitinated TDP-43 pathological inclusions in ALS and FTLD-U are recapitulated in SH-SY5Y cells
+ Emanuele Buratti |      826 | 1866316 | Phosphorylated and ubiquitinated TDP-43 pathological inclusions in ALS and FTLD-U are recapitulated in SH-SY5Y cells
+ Emanuele Buratti |      826 | 1872891 | Structural and functional characterization of the 5' region of subgenomic RNA5 of cucumber mosaic virus
+ Emanuele Buratti |      826 | 1905067 | NF1 mRNA biogenesis: Effect of the genomic milieu in splicing regulation of the NF1 exon 37 region
+ Emanuele Buratti |      826 | 1905067 | NF1 mRNA biogenesis: Effect of the genomic milieu in splicing regulation of the NF1 exon 37 region
+ Emanuele Buratti |      826 | 1906261 | Influence of RNA Secondary Structure on the Pre-mRNA Splicing Process
+ Emanuele Buratti |      826 | 1906261 | Influence of RNA Secondary Structure on the Pre-mRNA Splicing Process
+ Emanuele Buratti |      826 | 1982963 | Serologic response to Bartonella henselae in patients with cat scratch disease and in sick and healthy children
+ Emanuele Buratti |      826 | 1985278 | 
+ Emanuele Buratti |      826 | 1987959 | Undiagnosed coeliac disease and risk of autoimmune disorders in subjects with Type I diabetes mellitus
+ Emanuele Buratti |      826 | 2108882 | Neurons don't appreciate FUSsing in the cytoplasm
+ Emanuele Buratti |      826 | 2117473 | Depletion of TDP 43 overrides the need for exonic and intronic splicing enhancers in the human apoA-II gene
+ Emanuele Buratti |      826 | 2117473 | Depletion of TDP 43 overrides the need for exonic and intronic splicing enhancers in the human apoA-II gene
+ Emanuele Buratti |      826 | 2140936 | Another step forward for SELEXive splicing
+ Emanuele Buratti |      826 | 2149742 | 
+ Emanuele Buratti |      826 | 2182681 | Functional analysis of cis-acting elements regulating the alternative splicing of human CFTR exon 9
+ Emanuele Buratti |      826 | 2182681 | Functional analysis of cis-acting elements regulating the alternative splicing of human CFTR exon 9
+ E. Buratti       |      826 | 2186283 | 1041 POSTER Expression of Tumour-promoting Cysteine Rich 61 is Regulated by Tra2-|i1 and Acidosis
+ Emanuele Buratti |      826 | 2186283 | 1041 POSTER Expression of Tumour-promoting Cysteine Rich 61 is Regulated by Tra2-|i1 and Acidosis
+ Emanuele Buratti |      826 | 2208076 | Abnormal phosphorylation of Ser409/410 of TDP-43 in FTLD-U and ALS
+ Emanuele Buratti |      826 | 2208076 | Abnormal phosphorylation of Ser409/410 of TDP-43 in FTLD-U and ALS
+(135 rows)
+
