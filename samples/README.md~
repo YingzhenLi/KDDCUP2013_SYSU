@@ -3,7 +3,7 @@ KDDCUP2013/samples
 
 1. The benchmark code (see ben's repo) resulted in some error and I will try to fixed it in these two days. Tell me if you run the code successfully.
 
-2. We have millions of authors and 10s of millions of papers.
+2. We have 200,000+ of authors and millions of papers.
 
 3. See 'psql_data_structure' to get the data structures in the postgreSQL database.
 

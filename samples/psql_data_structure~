@@ -6,8 +6,8 @@
  public | journal        | table | postgres  15151
  public | paper          | table | postgres  2257249
  public | paperauthor    | table | postgres  12775821
- public | trainconfirmed | table | postgres  123447
- public | traindeleted   | table | postgres  112462
+ public | trainconfirmed | table | postgres  112462
+ public | traindeleted   | table | postgres  123447
  public | validpaper     | table | postgres  90088
 
 
@@ -103,10 +103,9 @@ Table "public.trainconfirmed"  (the author confirmed that the paper is his/her w
 example:
  authorid | paperid 
 ----------+---------
-      826 |   25733
-      826 |   47276
-      826 |   77012
-
+      826 |  220293
+      826 |  379873
+      826 |  384468
 
 
   Table "public.traindeleted" (the author confirmed that the paper is NOT his/her work.)
@@ -117,9 +116,9 @@ example:
 example:
  authorid | paperid 
 ----------+---------
-      826 |  220293
-      826 |  379873
-      826 |  384468
+      826 |   25733
+      826 |   47276
+      826 |   77012
 
 
    Table "public.validpaper"
