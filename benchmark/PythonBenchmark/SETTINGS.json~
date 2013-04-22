@@ -1,0 +1,5 @@
+{
+    "model_path": "/home/yingzhen/Projects/KDDCUP2013/benchmark/KddBenchmark/Models/basicPythonBenchmark.pickle",
+    "submission_path": "/home/yingzhen/Projects/KDDCUP2013/benchmark/KddBenchmark/Submissions/basicPythonBenchmark.csv",
+    "postgres_conn_string": "host='localhost' dbname='kdd' user='postgres' password='liyzhen2'"
+}

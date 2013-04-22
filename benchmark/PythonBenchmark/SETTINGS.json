@@ -1,0 +1,5 @@
+{
+    "model_path": "(your data path)/basicPythonBenchmark.pickle",
+    "submission_path": "(your data path)/basicPythonBenchmark.csv",
+    "postgres_conn_string": "host='localhost' dbname='(your database name)' user='(your user name)' password='(your user password)'"
+}
