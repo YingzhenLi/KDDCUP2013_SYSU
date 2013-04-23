@@ -77,8 +77,14 @@ def get_features_query(table_name):
     PaperAuthorCounts AS (
         SELECT PaperId, Count(*) AS Count
         FROM PaperAuthor
-        GROUP BY PaperId)
-    SELECT t.AuthorId, t.PaperId, ajc.Count As NumSameJournal, acc.Count AS NumSameConference, apc.Count AS NumPapersWithAuthorm, pac.Count AS NumAuthorsWithPaper
+        GROUP BY PaperId),
+    -- feature 'period'
+    AuthorPaperPeriod AS (
+	SELECT t.AuthorId, min(p.year) AS StartYear, max(p.year) AS EndYear
+	From %s t
+	LEFT OUTER JOIN paper p on t.PaperId = p.Id
+	GROUP BY t.AuthorId)
+    SELECT t.AuthorId, t.PaperId, app.StartYear, app.EndYear, ajc.Count As NumSameJournal, acc.Count AS NumSameConference, apc.Count AS NumPapersWithAuthorm, pac.Count AS NumAuthorsWithPaper
     FROM %s t
     LEFT OUTER JOIN Paper p ON t.PaperId=p.Id
     LEFT OUTER JOIN AuthorJournalCounts ajc
@@ -91,5 +97,8 @@ def get_features_query(table_name):
         ON apc.AuthorId=t.AuthorId
     LEFT OUTER JOIN PaperAuthorCounts pac
         ON pac.PaperId=t.PaperId
-    """ % table_name
+    -- feature 'period'
+    LEFT OUTER JOIN AuthorPaperPeriod app
+	ON app.AuthorId = t.AuthorId
+    """ % (table_name, table_name)
     return query
