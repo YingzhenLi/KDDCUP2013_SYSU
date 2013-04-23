@@ -28,11 +28,26 @@ recoding<-function(vec)
   Encoding(vec)="UTF-8"
   return(vec)
 }
-author[,2:3]=apply(author[,2:3],2,recoding)
-paper[,c(2,6)]=apply(paper[,c(2,6)],2,recoding)
-conference[,2:4]=apply(conference[,2:4],2,recoding)
-journal[,2:4]=apply(journal[,2:4],2,recoding)
-paperauthor[,3:4]=apply(paperauthor[,3:4],2,recoding)
+author23=data.frame(apply(author[,2:3],2,recoding))
+paper26=data.frame(apply(paper[,c(2,6)],2,recoding))
+conference234=data.frame(apply(conference[,2:4],2,recoding))
+journal234=data.frame(apply(journal[,2:4],2,recoding))
+paperauthor34=data.frame(apply(paperauthor[,3:4],2,recoding))
+
+author=data.frame(id=author[,1],author23)
+paper=data.frame(id=paper$id,year=paper$year,conferenctid=paper$conferenceid,journalid=paper$journalid
+                 ,paper26)
+conference=data.frame(id=conference$id,conference234)
+journal=data.frame(id=journal$id,journal234)
+conference=data.frame(id=conference$id,conference234)
+
+paperauthor=data.frame(paperid=paperauthor$paperid,authorid=paperauthor$authorid,paperauthor34)
+
+
+
+
+
+
 
 setwd("F:/kdd/2013 kdd/rda")
 save(author,file="author.rda")
