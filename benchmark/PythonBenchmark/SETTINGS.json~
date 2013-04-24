@@ -1,5 +1,5 @@
 {
-    "model_path": "/home/yingzhen/Projects/KDDCUP2013/benchmark/KddBenchmark/Models/basicPythonBenchmark.pickle",
-    "submission_path": "/home/yingzhen/Projects/KDDCUP2013/benchmark/KddBenchmark/Submissions/basicPythonBenchmark.csv",
-    "postgres_conn_string": "host='localhost' dbname='kdd' user='postgres' password='liyzhen2'"
+    "model_path": "$DataPath/KDD2013AuthorPaperIdentification/Models/basicCoauthorBenchmarkRev2.pickle",
+    "submission_path": "$DataPath/KDD2013AuthorPaperIdentification/Submissions/basicCoauthorBenchmarkRev2.csv",
+    "postgres_conn_string": "host='localhost' dbname='Kdd2013AuthorPaperIdentification' user='postgres' password='##AskForPassword##'"
 }

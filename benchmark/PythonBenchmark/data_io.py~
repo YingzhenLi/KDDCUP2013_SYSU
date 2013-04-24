@@ -49,7 +49,7 @@ def write_submission(predictions):
     writer.writerows(rows)
 
 
-# database IO, reusable
+# database IO, reusable, table_name can be "author", "paper", "trainconfirmed", etc.
 def get_features_db(table_name):
     conn = get_db_conn()
     query = get_features_query(table_name)
@@ -77,8 +77,30 @@ def get_features_query(table_name):
     PaperAuthorCounts AS (
         SELECT PaperId, Count(*) AS Count
         FROM PaperAuthor
-        GROUP BY PaperId)
-    SELECT t.AuthorId, t.PaperId, ajc.Count As NumSameJournal, acc.Count AS NumSameConference, apc.Count AS NumPapersWithAuthorm, pac.Count AS NumAuthorsWithPaper
+        GROUP BY PaperId),
+    -- feature 'period'
+    -- AuthorPaperPeriod AS (
+	-- SELECT t.AuthorId, min(p.year) AS StartYear, max(p.year) AS EndYear
+	-- From TrainConfirmed t
+	-- LEFT OUTER JOIN paper p on t.PaperId = p.Id
+	-- GROUP BY t.AuthorId),
+    -- feature 'confirmed (or deleted) co-authors of some paper': can be change to compute the number of
+    PaperConfirmedOrDeletedCoAuthor AS (
+	SELECT t1.Paperid, t1.AuthorId AS AuthorId, t2.AuthorId AS CoAuthor
+	FROM %s t1
+	LEFT OUTER JOIN %s t2 on t1.PaperId = t2.PaperId),
+    -- feature 'confirmed (or deleted) co-authors of an author'
+    ConfirmedOrDeletedCoAuthor AS (
+	SELECT t.AuthorId AS AuthorId, pcdca.CoAuthor AS CoAuthorId
+	FROM %s t, PaperConfirmedOrDeletedCoAuthor pcdca
+	WHERE t.PaperId = pcdca.PaperId AND t.AuthorId = pcdca.AuthorId),
+    -- feature 'number of confirmed (or deleted) co-authors'
+    NumOfConfirmedOrDeletedCoAuthor AS (
+	SELECT t.AuthorId, t.PaperId, count(distinct(cdca.CoAuthorId)) as NumOfCoAuthor
+	FROM %s t, ConfirmedOrDeletedCoAuthor cdca
+	WHERE t.AuthorId = cdca.AuthorId
+	GROUP BY t.AuthorId, t.PaperId)
+    SELECT t.AuthorId, t.PaperId, ncdca.NumOfCoAuthor, ajc.Count As NumSameJournal, acc.Count AS NumSameConference, apc.Count AS NumPapersWithAuthorm, pac.Count AS NumAuthorsWithPaper
     FROM %s t
     LEFT OUTER JOIN Paper p ON t.PaperId=p.Id
     LEFT OUTER JOIN AuthorJournalCounts ajc
@@ -91,5 +113,12 @@ def get_features_query(table_name):
         ON apc.AuthorId=t.AuthorId
     LEFT OUTER JOIN PaperAuthorCounts pac
         ON pac.PaperId=t.PaperId
-    """ % table_name
+    -- feature 'period'
+    -- LEFT OUTER JOIN AuthorPaperPeriod app
+	-- ON app.AuthorId = t.AuthorId
+    -- feature 'number of confirmed (or deleted) co-authors of some author on some paper'
+    LEFT OUTER JOIN NumOfConfirmedOrDeletedCoAuthor ncdca
+	ON ncdca.PaperId = t.PaperId
+	   AND ncdca.AuthorId = t.AuthorId
+    """ % (table_name, table_name, table_name, table_name, table_name)
     return query

@@ -7,10 +7,9 @@ def KDDCup2013Track1SplitDataSeed():
     raise NotImplementedError
 
 def split_data(data, train_frac, valid_frac):
-    # we RANDOMLY split a dataset to two portions (train/validation) according to the fractions
-    index = np.arange(len(data))	# indexes set [0, 1, 2, ...]
+    index = np.arange(len(data))
     np.random.seed(KDDCup2013Track1SplitDataSeed())
-    np.random.shuffle(index)	# random sampling!
+    np.random.shuffle(index)
     train_end = int(train_frac*len(data))
     valid_end = int((train_frac+valid_frac)*len(data))
     train = data.ix[index[:train_end]]
@@ -73,8 +72,7 @@ def create_competition_data():
     train = convert_to_train_format(train)
     valid, valid_solution = convert_to_test_format(valid, "PublicTest")
     test, test_solution = convert_to_test_format(test, "PrivateTest")
-    
-    # write to the csv files
+
     train.to_csv(os.path.join(out_path, "Train.csv"), index=False)
     valid.to_csv(os.path.join(out_path, "Valid.csv"), index=False)
     valid_solution.to_csv(os.path.join(out_path, "ValidSolution.csv"), index=False)

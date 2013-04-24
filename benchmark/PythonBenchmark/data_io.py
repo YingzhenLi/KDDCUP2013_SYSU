@@ -5,7 +5,6 @@ import pickle
 import psycopg2
 
 def paper_ids_to_string(ids):
-    # join the paperids we predicted for each user
     return " ".join([str(x) for x in ids])
 
 conn_string = None
@@ -23,33 +22,26 @@ def get_db_conn():
     return conn
 
 def get_paths():
-    # get the IO path from SETTINGS.json and store as dict type variable
     paths = json.loads(open("SETTINGS.json").read())
     for key in paths:
         paths[key] = os.path.expandvars(paths[key])
     return paths
 
 def save_model(model):
-    # pickle dumping for data saving, can also use the cPickle package
     out_path = get_paths()["model_path"]
     pickle.dump(model, open(out_path, "w"))
 
 def load_model():
-    # load models saved before (see save_model()) with pickle.load
     in_path = get_paths()["model_path"]
     return pickle.load(open(in_path))
 
 def write_submission(predictions):
-    # also see predict.py
-    submission_path = get_paths()["submission_path"]	# see get_path(), from SETTINGS.json
+    submission_path = get_paths()["submission_path"]
     rows = [(author_id, paper_ids_to_string(predictions[author_id])) for author_id in predictions]
-    # csv writer reusable
     writer = csv.writer(open(submission_path, "w"), lineterminator="\n")
     writer.writerow(("AuthorId", "PaperIds"))
     writer.writerows(rows)
 
-
-# database IO, reusable, table_name can be "author", "paper", "trainconfirmed", etc.
 def get_features_db(table_name):
     conn = get_db_conn()
     query = get_features_query(table_name)
@@ -59,46 +51,5 @@ def get_features_db(table_name):
     return res
 
 def get_features_query(table_name):
-    query = """
-    WITH AuthorJournalCounts AS (
-        SELECT AuthorId, JournalId, Count(*) AS Count
-        FROM PaperAuthor pa
-        LEFT OUTER JOIN Paper p on pa.PaperId=p.Id
-        GROUP BY AuthorId, JournalId),
-    AuthorConferenceCounts AS (
-        SELECT AuthorId, ConferenceId, Count(*) AS Count
-        FROM PaperAuthor pa
-        LEFT OUTER JOIN Paper p on pa.PaperId=p.Id
-        GROUP BY AuthorId, ConferenceId),
-    AuthorPaperCounts AS (
-        SELECT AuthorId, Count(*) AS Count
-        FROM PaperAuthor
-        GROUP BY AuthorId),
-    PaperAuthorCounts AS (
-        SELECT PaperId, Count(*) AS Count
-        FROM PaperAuthor
-        GROUP BY PaperId),
-    -- feature 'period'
-    AuthorPaperPeriod AS (
-	SELECT t.AuthorId, min(p.year) AS StartYear, max(p.year) AS EndYear
-	From %s t
-	LEFT OUTER JOIN paper p on t.PaperId = p.Id
-	GROUP BY t.AuthorId)
-    SELECT t.AuthorId, t.PaperId, app.StartYear, app.EndYear, ajc.Count As NumSameJournal, acc.Count AS NumSameConference, apc.Count AS NumPapersWithAuthorm, pac.Count AS NumAuthorsWithPaper
-    FROM %s t
-    LEFT OUTER JOIN Paper p ON t.PaperId=p.Id
-    LEFT OUTER JOIN AuthorJournalCounts ajc
-        ON ajc.AuthorId=t.AuthorId
-           AND ajc.JournalId = p.JournalId
-    LEFT OUTER JOIN AuthorConferenceCounts acc
-        ON acc.AuthorId=t.AuthorId
-           AND acc.ConferenceId = p.ConferenceId
-    LEFT OUTER JOIN AuthorPaperCounts apc
-        ON apc.AuthorId=t.AuthorId
-    LEFT OUTER JOIN PaperAuthorCounts pac
-        ON pac.PaperId=t.PaperId
-    -- feature 'period'
-    LEFT OUTER JOIN AuthorPaperPeriod app
-	ON app.AuthorId = t.AuthorId
-    """ % (table_name, table_name)
-    return query
+    query = open("feature_query.sql").read().strip()
+    return query.replace("##DataTable##", table_name)

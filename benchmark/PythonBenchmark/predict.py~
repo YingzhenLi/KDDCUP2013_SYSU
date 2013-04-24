@@ -27,7 +27,7 @@ def main():
         author_predictions[a_id].append((pred, p_id))
 
     for author_id in sorted(author_predictions):
-        paper_ids_sorted = sorted(author_predictions[author_id], reverse=False)	# prediction sort from confirmed (0) to deleted (1)
+        paper_ids_sorted = sorted(author_predictions[author_id], reverse=False)	# prediction sort from confirmed (0) to deleted (1), notice that the paper is more likely to be confirmed if the grade is closer to 0.
         paper_predictions[author_id] = [x[1] for x in paper_ids_sorted]
 
     print("Writing predictions to file")
