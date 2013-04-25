@@ -1,0 +1,5 @@
+-- #paper the author published
+SELECT AuthorId, Count(*) AS Count
+INTO AuthorPaperCounts
+FROM PaperAuthor
+GROUP BY AuthorId;

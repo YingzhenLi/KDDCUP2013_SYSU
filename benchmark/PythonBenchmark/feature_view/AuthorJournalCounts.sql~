@@ -1,0 +1,6 @@
+-- #paper the author published in per journal
+SELECT AuthorId, JournalId, Count(*) AS Count
+INTO AuthorJournalCounts
+FROM PaperAuthor pa
+LEFT OUTER JOIN Paper p on pa.PaperId=p.Id
+GROUP BY AuthorId, JournalId;

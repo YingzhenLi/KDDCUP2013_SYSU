@@ -3,6 +3,7 @@ import json
 import os
 import pickle
 import psycopg2
+import gc	# collect memory
 
 def paper_ids_to_string(ids):
     return " ".join([str(x) for x in ids])
@@ -44,10 +45,50 @@ def write_submission(predictions):
 
 def get_features_db(table_name):
     conn = get_db_conn()
+    feature_view_list = open("feature_view_list.txt").read().split('\n')[:-1]	# load the feautures
+    for feature_view_name in feature_view_list:
+	feature_view_name = feature_view_name.replace("##DataTable##", table_name)
+    	if not view_existence_db(feature_view_name, conn):	# feature view not exist
+	    create_view(feature_view_name, conn)	# create feature view
     query = get_features_query(table_name)
     cursor = conn.cursor()
     cursor.execute(query)
     res = cursor.fetchall()
+    return res
+
+def view_existence_db(feature_view_name, conn):
+    query = """
+	select count(*) from pg_class where relname = '##DataTable##'
+    """
+    query = query.replace("##DataTable##", feature_view_name.lower())
+    cursor = conn.cursor()
+    cursor.execute(query)
+    res = cursor.fetchall()
+    return res[0][0] == 1
+
+def create_view(feature_view_name, conn):
+    query = open("feature_view/" + feature_view_name + ".sql").read().strip()
+    cursor = conn.cursor()
+    cursor.execute(query)
+    conn.commit()
+    # if running in the supercomputer, we keep the data in the memory
+    del cursor
+    gc.collect()
+    res = True	# no check
+    #res = view_existence_db(feature_view_name, conn)	# check if successfully created
+    return res
+
+def drop_view(feature_view_name, conn):
+    # no use
+    if view_existence_db(feature_view_name, conn):
+	query = """
+		drop view ##DataTable##
+	"""
+	query = query.replace("##DataTable##", feature_view_name.lower())
+	conn.cursor.execute(query)
+	conn.commit()
+    res = True	# no check
+    #res = not view_existence_db(feature_view_name, conn)	# check if successfully dropped
     return res
 
 def get_features_query(table_name):

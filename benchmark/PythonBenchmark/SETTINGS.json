@@ -1,5 +1,5 @@
 {
-    "model_path": "(your data path)/basicPythonBenchmark.pickle",
-    "submission_path": "(your data path)/basicPythonBenchmark.csv",
-    "postgres_conn_string": "host='localhost' dbname='(your database name)' user='(your user name)' password='(your user password)'"
+    "model_path": "/home/yingzhen/Projects/KDDCUP2013/benchmark/KddBenchmark/Models/benchmark_coauthor_period.pickle",
+    "submission_path": "/home/yingzhen/Projects/KDDCUP2013/benchmark/KddBenchmark//Submissions/benchmark_coauthor_period.csv",
+    "postgres_conn_string": "host='localhost' dbname='kdd_no_title' user='postgres' password='liyzhen2'"
 }
