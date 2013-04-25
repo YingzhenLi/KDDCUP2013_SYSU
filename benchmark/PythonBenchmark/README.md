@@ -1,7 +1,8 @@
 KDD Cup 2013 - Author Paper Identification Challenge
 ====================================================
 
-NOTE: I modified the SQL code by saving views in the database (see SQL files in folder 'feature_view'), and successfully tested it on the sample set. But when running on the whole dataset it returned error of laptop's memory overflow. I'm not sure the method to collect memory in revised 'data_io.py' can work. Anyway, if running on the supercomputer or server with large memory it should be ok. -- yingzhen Apr 25 2013
+NOTE: I modified the SQL code by saving views in the database (see SQL files in folder 'feature_view'), and successfully tested it on the sample set. But when running on the whole dataset it returned error of laptop's memory overflow. I'm not sure the method to collect memory in revised 'data_io.py' can work. Anyway, if running on the supercomputer or server with large memory it should be ok. 
+To zhangye: you may have a try on your lab's server -- yingzhen Apr 25 2013
 
 This folder contains a benchmark and sample code in Python for the [Author Paper Identification Challenge](https://www.kaggle.com/c/kdd-cup-2013-author-paper-identification-challenge), a machine learning challenged hosted by [Kaggle](https://www.kaggle.com) and organized by [Microsoft Research](http://research.microsoft.com/) in conjunction with the 2013 KDD Cup Committee and Kaggle.
 
