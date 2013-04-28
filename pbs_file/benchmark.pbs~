@@ -1,0 +1,13 @@
+#!/bin/sh
+# benchmark pbs file, need more editing -- yingzhen Apr 28 2013
+# no parallel
+
+#PBS -N test
+#PBS -l nodes=1:ppn=1
+
+cd $HOME/KDDCUP2013_SYSU/benchmark/PythonBenchmark
+echo successfully entered in file directory $PBS_O_WORKDIR
+echo this job is $PBS_JOBID@$PBS_QUEUE
+$HOME/python/bin/python train.py > $HOME/kdd_data/models/benchmark_coauthor_period_train_log
+$HOME/python/bin/python predict.py > $HOME/kdd_data/models/benchmark_coauthor_period_test_log
+echo job successfully done
