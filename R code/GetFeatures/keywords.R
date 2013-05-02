@@ -59,7 +59,7 @@ firstkey[index]=k[,2]
 #keywords的标点分隔形式很不相同，同时会出现一种标点多种用途的情形
 #比如对于“.”，可以作为结束符、分隔符、省略符；我们需要甄别出它作为分隔符的情形
 
-#我认为它们的优先级别为下述s矩阵1-7的顺序一致（可以通过ind来观察它们的统计情况）
+#我认为它们的优先级别与下述s矩阵1-7的顺序一致（可以通过ind来观察它们的统计情况）
 #我得到的规律是，当优先级别较弱的分隔符与较强的分隔符同时出现时，一般以优先级较强的分隔符作为分隔符
 #此时优先级较弱的分隔符作为其他途径使用
 #当只（注意，是“只”）出现优先级较弱的分隔符时，一般作为分隔符使用
@@ -163,7 +163,11 @@ key2=lapply(key.cate,function(x) x$key)
 #有时keywords后面有（）注明，他们会表示缩写形式，我将他们提出独立成词
 #对于上述划分之后存在的“，”没有分割完全的情形，我将它们作为subkey抽出
 #对于出现的停词，用停词作为分隔符对keywords进一步分割
+#去除单个数字
+#对于x-ray???
+#对于非全大写的单词变为小写字母
 #对于keyword!=""的情形，最终结果保存于key3 subkey 以及cate中
+#将短语个数>=5的分割成单个
 
 
 ##extract subkey & trim again #####
@@ -210,7 +214,7 @@ get.subkey<-function(words)
   c=gregexpr(",",words,perl=T)
   if (c[[1]][1]!=-1)
   {
-    subkey=unlist(lapply(unlist(strsplit(words,"\\s*,\\s*",perl=T)),modify.word))
+    subkey=unlist(lapply(unlist(strsplit(words,"\\s*[,?/]\\s*",perl=T)),modify.word))
     words=""
   }
   
@@ -229,8 +233,21 @@ get.key.subkey<-function(vector)
   a=lapply(vector,get.subkey)
   words=c(unlist(lapply(a,function(x) x$words)),abb)
   subkey=unlist(lapply(a,function(x) x$subkey))
-  words=words[words!=""&words!="character(0)"]
-  subkey=subkey[subkey!=""&subkey!="character(0)"]
+  
+  
+  w=strsplit(words," ")
+  s=strsplit(subkey," ")
+  l1=unlist(lapply(w,length))
+  l2=unlist(lapply(s,length))
+  ww=words[l1>4]
+  ss=subkey[l2>4]
+  words=c(words[l1<=4],unlist(w[l1>4]))
+  subkey=c(subkey[l2<=4],unlist(s[l2>4]))
+  
+  notN1=grepl("[0-9]",words,perl=T)
+  notN2=grepl("[0-9]",subkey,perl=T)
+  words=words[words!=""&words!="character(0)"&notN1==F]
+  subkey=subkey[subkey!=""&subkey!="character(0)"&notN2==F]
   return(list(Words=words,Subkey=subkey))      
 }
 
