@@ -15,6 +15,8 @@ and I will work on it later.
 NOTE: you should specify your database settings in the SETTINGS.json 
 in PythonBenchmark directory.
 
+NOTE2: The newest version returned no error, but I think we should 
+focus on how to cut the keywords out. -- yingzhen May 3 2013
 ---------------------------------------------------------------------
 
 ONLINE VARIATIONAL BAYES FOR LATENT DIRICHLET ALLOCATION

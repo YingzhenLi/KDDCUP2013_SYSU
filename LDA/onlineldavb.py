@@ -58,7 +58,7 @@ def parse_doc_list(docs, vocab):
         temp = list()
         temp.append(docs)
         docs = temp
-    print vocab
+    
     D = len(docs)
     wordids = list()
     wordcts = list()
@@ -160,6 +160,7 @@ class OnlineLDA:
         for d in range(0, batchD):
             # These are mostly just shorthand (but might help cache locality)
             ids = wordids[d]
+	    #print ids
             cts = wordcts[d]
             gammad = gamma[d, :]
             Elogthetad = Elogtheta[d, :]
@@ -221,6 +222,13 @@ class OnlineLDA:
         # the information we got from this mini-batch.
         rhot = pow(self._tau0 + self._updatect, -self._kappa)
         self._rhot = rhot
+
+	# null keyword-beta list: exit
+	if self._W == 0:
+	    gamma = n.zeros((len(docs), self._K))
+	    bound = 0
+	    return((gamma, bound))
+
         # Do an E step to update gamma, phi | lambda for this
         # mini-batch. This also returns the information about phi that
         # we need to update lambda.

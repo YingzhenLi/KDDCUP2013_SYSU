@@ -82,7 +82,7 @@ def vocabulary_generation(journal_conf_keyword_list, vocab):
     for keywords in journal_conf_keyword_list:
         keywords = keywords.lower()
         keywords = re.sub(r'[^a-z0-9]', ' ', keywords)	# to be modified!
-	print keywords
+	# print keywords
 	keyword_set = keywords.split(' ')	# to be modified!
 	for keyword in keyword_set:
 	    # adding new keywords into the vocabulary

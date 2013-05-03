@@ -35,7 +35,8 @@ def main():
     batch = batchsize(num)
     iteration_times = int(num/batch)
     # The total number of journals/conferences
-    D = lambda journal_or_conference: 15151 if journal_or_conference == "journal" else 4545
+    DocNum = lambda journal_or_conference: 15151 if journal_or_conference == "journal" else 4545
+    D = DocNum(journal_or_conference)
     # The number of topics
     K = 100	# maybe some other numbers
     # Our vocabulary : we need some vocabulary set!
@@ -52,8 +53,8 @@ def main():
 	    journal_conf_keyword_list = jcke.input_journal_conf_keywords(journal_conf_list[iteration * batch :])
         # online LDA for keyword sets
 	# here we update the relative function in the package	(dangerous!)	
-	print journal_conf_keyword_list
-	online_LDA._vocab = jcke.vocabulary_generation(journal_conf_keyword_list, online_LDA._vocab)	
+	online_LDA._vocab = jcke.vocabulary_generation(journal_conf_keyword_list, online_LDA._vocab)
+	
         (gamma, bound) = online_LDA.update_lambda(journal_conf_keyword_list)
         # Compute an estimate of held-out perplexity
         (keywordids, keywordcts) = lda.parse_doc_list(journal_conf_keyword_list, online_LDA._vocab)
