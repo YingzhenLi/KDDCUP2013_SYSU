@@ -45,7 +45,7 @@ def write_submission(predictions):
 
 def get_features_db(table_name):
     conn = get_db_conn()
-    feature_view_list = open("feature_view_list.txt").read().split('\n')[:-1]	# load the feautures
+    feature_view_list = open("feature_view_list.txt").read().split()	# load the feautures
     for feature_view_name in feature_view_list:
 	feature_view_name = feature_view_name.replace("##DataTable##", table_name)
     	if not view_existence_db(feature_view_name, conn):	# feature view not exist
