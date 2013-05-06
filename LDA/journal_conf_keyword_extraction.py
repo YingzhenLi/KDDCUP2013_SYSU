@@ -81,7 +81,7 @@ def vocabulary_generation(journal_conf_keyword_list, vocab):
     # just getting keywords from the phrases
     for keywords in journal_conf_keyword_list:
         keywords = keywords.lower()
-        keywords = re.sub(r'[^a-z0-9]', ' ', keywords)	# to be modified!
+        keywords = re.sub(r'[^a-z0-9^-]', ' ', keywords)	# to be modified!
 	# print keywords
 	keyword_set = keywords.split(' ')	# to be modified!
 	for keyword in keyword_set:
