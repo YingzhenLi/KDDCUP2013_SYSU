@@ -22,7 +22,8 @@ getConcret=function(word,finger,freq)
 	conc=1:n
 	for (i in 1:n)
 	{
-		tmp=word[[i]]
+		#tmp=word[[i]]
+		tmp=unlist(strsplit(word[i]," "))
 		tfp=finger[i]
 		tfreq=freq[i]
 		nn=length(tmp)
@@ -118,6 +119,11 @@ getAllPhrases=function(StrData,d0)#Get a table with phrase, frequency, entropy, 
 	ind=order(ansFinger)
 	ansFinger=ansFinger[ind]
 	ansWord=ansWord[ind]
+	n=length(ind)
+	tmp=NULL
+	for (i in 1:n)
+		tmp[i]=paste(ansWord[[i]],collapse=" ")
+	ansWord=tmp
 	ansFreq=ansFreq[ind]
 	ansEntropy=ansEntropy[ind]
 	show("Working on the Concretion")
@@ -125,17 +131,13 @@ getAllPhrases=function(StrData,d0)#Get a table with phrase, frequency, entropy, 
 	return(list(ansWord,ansFreq,ansEntropy,ansConcrete))
 }
 
-PhraseSegment=function(StrData,d0=c(1,4),ent0,freq0,conc0)
+cleaning=function(result,min.d=1,ent0=0,freq0=0,conc0=0)
 {
-	require(entropy)
-	StrData=as.character(StrData)
-	show("Begin!")
-	tmp=getAllPhrases(StrData,d0[2])#a table with each words and other info, including words length one
-	show("End of getAllPhrases")
-	phrases=tmp[[1]]
-	freq=tmp[[2]]
-	ent=tmp[[3]]
-	conc=tmp[[4]]
+	
+	phrases=result[[1]]
+	freq=result[[2]]
+	ent=result[[3]]
+	conc=result[[4]]
 	
 	ind=which(freq>freq0 & ent>ent0 & conc>conc0)
 	
@@ -153,8 +155,11 @@ PhraseSegment=function(StrData,d0=c(1,4),ent0,freq0,conc0)
 	n=length(phrases)
 	ind=NULL
 	for (i in 1:n)
-		if (length(phrases[[i]])>d0[1])
+	{
+		tmp=length(unlist(strsplit(phrases[i]," ")))
+		if (tmp>=min.d)
 			ind=c(ind,i)
+	}
 	phrases=phrases[ind]
 	ent=ent[ind]
 	conc=conc[ind]
@@ -163,17 +168,14 @@ PhraseSegment=function(StrData,d0=c(1,4),ent0,freq0,conc0)
 	return(list(Phrase=phrases,Freq=freq,Entropy=ent,Concret=conc))
 }
 
-#load("D:\\My Documents\\Study\\Kaggle\\KDD 2013\\github\\KDDCUP2013_SYSU\\samples\\rda\\paper.rda")
-#with keywords
-paper[,6]=as.character(paper[,6])#with keywords
-x=paste(paper[,6],collapse=" ")
-tmp=strsplit(x,"[^A-Za-z]")[[1]]
-strdat=tmp[which(tmp!="")]
-result=PhraseSegment(strdat,c(1,4),0,0,0)#17k words in 150 secs, pretty fast
-
-#with title
-paper[,5]=as.character(paper[,5])#with title
-x=paste(paper[,5],collapse=" ")
-tmp=strsplit(x,"[^A-Za-z]")[[1]]
-strdat=tmp[which(tmp!="")]
-result=PhraseSegment(strdat,c(1,4),0,0,0)#70k words in 1900 secs, pretty slow!
+PhraseSegment=function(StrData,d0=c(1,4),ent0,freq0,conc0)
+{
+	require(entropy)
+	StrData=as.character(StrData)
+	show("Begin!")
+	tmp=getAllPhrases(StrData,d0[2])#a table with each words and other info, including words length one
+	show("End of getAllPhrases")
+	tmp=cleaning(tmp,d0[1],ent0,freq0,conc0)
+	
+	return(tmp)
+}
