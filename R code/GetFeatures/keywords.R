@@ -6,8 +6,6 @@
 setwd("F:/kdd/2013 kdd/rda")
 load("F:/kdd/2013 kdd/rda/paper.rda")
 keyword=as.character(paper$keyword)
-notNULL=which(keyword!="")
-
 
 #以下内容相关正则表达式的部分
 #请参照正则表达式语法：http://msdn.microsoft.com/zh-cn/library/ae5bf541(v=vs.80).aspx
@@ -93,7 +91,6 @@ splitkey<-function(keyword)
 }
 
 s=splitkey(keyword)
-ss=splitkey(firstkey[notNULL])
 #####just for stat #####
 pasteind<-function(vector)
 {
@@ -152,15 +149,14 @@ get.key.cate<-function(vector)
                ,vector,perl=T)&grepl("\\s[12][0-9]{3}\\s",vector,perl=T)]=""
   vector=vector[vector!=""]
   a=matrix(unlist(lapply(vector,get.cate)),ncol=2,byrow=T)
-  #cate=paste(unique(a[,1][a[,1]!=""]),collapse=";")
-  cate=unique(a[,1][a[,1]!=""])
+  cate=paste(unique(a[,1][a[,1]!=""]),collapse=";")
   key=a[,2][a[,2]!=""]
   return(list(cate=cate,key=key))
 }
 
 key.cate=lapply(key[keyword!=""],get.key.cate)
 
-cate=lapply(key.cate,function(x) x$cate)
+cate=unlist(lapply(key.cate,function(x) x$cate))
 key2=lapply(key.cate,function(x) x$key)
 
 
@@ -261,38 +257,6 @@ kk2=lapply(key2,get.key.subkey)
 key3=lapply(kk2,function(x) x$Words)
 subkey=lapply(kk2,function(x) x$Subkey)
 ll=unlist(lapply(subkey,length))
-
-#DocumentTerms Matrix
-
-#只对keyword!=""的部分进行统计聚类：cate key3 subkey
-comb<-function(i,wei,cate,key,subkey)
-{
-  a=c(table(cate[[i]])*wei[1],table(key[[i]])*wei[2],table(subkey[[i]])*wei[3])
-  name=unique(names(a))
-  name=name[name!=""]
-  c=unlist(lapply(name,function(x) sum(a[x])))
-  names(c)=name
-  return(c)
-}
-
-com=lapply(1:length(key3),comb,wei=c(3,2,1),cate=cate,key=key3,subkey=subkey)
-
-col=unique(unlist(c(cate,key3,subkey)))
-nrow=length(key3);ncol=length(col)
-
-mat=matrix(0,nrow,ncol)
-colnames(mat)=col
-lmat=lapply(1:nrow,function(i) {mat[i,][names(com[[i]])]=com[[i]];return(mat[i,])})
-mm=do.call(rbind,lmat)
-
-m=as.simple_triplet_matrix(mm)
-dtm <- as.DocumentTermMatrix(m,weighting =weightTf,control = list(stemming = TRUE, stopwords = TRUE, removePunctuation = TRUE,tolower=T))
-
-inspect(dtm[1:5, 1:5])
-#dist_dtm <- dissimilarity(dtm, method = 'cosine')
-#hc <- hclust(dist_dtm, method = 'ave')
-#plot(hc, xlab = '')
-
 
 
 
