@@ -1,0 +1,153 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{algorithm} %format of the algorithm
+\usepackage{algorithmic} %format of the algorithm
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\author{Yingzhen Li}
+
+\title{Modelling the Author-Paper Authentication Task}
+\begin{document}
+
+\maketitle
+
+We need to get the features of both the author and the paper, then computes the result with some model.\\
+This model needs modification, just edit the tex code and re-sync it.
+
+\section{Features of the Author}
+\subsection{Overview of the Author Table}
+Attributes: author id, name, affiliation\\
+\#author with distinct id: 247203\\
+Some authors may have different id (I don't believe that there exist two or more people with the same name in some department!).
+
+\subsubsection{Name}
+May be abbreviated, e.g.  A.\ Agliolo Gallitto, or, A.\ A.\ M.\ Negm. \\
+Also it can be null!
+
+\subsubsection{Affiliation}
+Over 150,000 records have the affiliation with '' value.\\
+Can be university, department, company or some other organizations.
+
+\subsection{Features Related to the Author}
+Note: the authors in the validation set has no paper confirmed or deleted, hence we suggest here the PaperAuthor table is 'authentic'.
+
+\subsubsection{Topics}
+Find the paper of some author in PaperAuthor table then figure out the topics of their keywords and titles.\\
+Get the research interests from the co-authors.
+
+\subsubsection{Journal \& Conference}
+\#Journal or \#Conference the author has published paper in.\\
+The topic of some journal (conference).
+
+\subsubsection{Co-author}
+Co-author list: figure out the co-authors of some paper in the PaperAuthor table.\\
+Assign 'weights', e.g. by counting the number of papers co-written.\\
+(Optional) Specify the topics of different co-authors.\\
+(Optional) potential co-author
+
+\subsubsection{Other Statistics}
+\#paper the author has published
+\#paper the author has published in some year (high computation!)
+
+\section{Features of the Paper}
+\subsection{Overview of the Paper Table}
+Attributes: paper id, title, year, conference id, journal id, keyword\\
+\#paper with distinct id: 2257249\\
+\#paper with title = '': 161935\\
+\#paperid with the same title (except ''): 1.0575087515292465
+
+\subsubsection{Keywords}
+The cut of the keywords: unigram, bi-gram, tri-gram ...\\
+I suggest performing the keyword analysis in the paper sets of the same journal/conference:\\
+1. for common keywords: still common!\\
+2. for terminology: may have distinct meaning regarding to different research areas.\\
+Analysis of the title:
+
+\subsubsection{Topics}
+We assign the result of the topic models to compose the topic set. See Section \ref{topic_model}.\\
+
+\subsubsection{Journal and Conference}
+The topic sets of the paper and its publishing journal/conference may be intersected.\\
+If the paper is with no keywords, topics of the journal/conference can help identifying the research area.\\
+Statistics: \#paper the author published in some journal/conference.
+
+\section{Journal and Conference}
+\subsection{Overview of the Journal/Conference Table}
+Attributes: journal id (conference id), short name, full name, homepage\\
+\#journal with distinct short name/full name: 8284/15107\\
+\#conference with distinct short name/full name: 3692/4480
+
+\subsubsection{Topics}
+\label{topic_model}
+Extracted from the keywords (and titles) of its papers.\\
+Topic models: a document contains the keywords of some journal/conference.\\
+Using LDA (shallow topic extraction) or HDP/HLDA (hierarchical). Here note that we should see the perplexity to determine the number of topics assigned in advance.\\
+Overcoming the pre-assign of \#topic: Bayesian Nonparametrics, e.g. the Chinese Restaurant Franchise model.
+
+\section{Affiliation (Implied)}
+Containing authors: they may have similar research interests.\\
+Hierarchical: e.g. University of Cambridge - Department of Engineering.
+
+\section{Topics (Implied)}
+Can be viewed as a kind of object in graphic models.\\
+Can be viewed as a feature vector.
+
+\section{Connections between Objects}
+We only discuss some paths with lengths no longer than 3 here.
+\subsection{Direct Connections}
+Length 1:\\
+author - (confirmed/deleted) paper (in (TrainConfirmed/TrainDeleted) PaperAuthor)\\
+author - affiliation (in Author)\\
+paper - conference/journal (in Paper)
+
+\subsection{Indirect Connections}
+Length 2:\\
+author - paper - author (co-author)\\
+author - paper - journal/conference (journal/conference of the author's preference)\\
+paper - author - paper (maybe these papers described very similar topics)\\
+Length 3:\\
+author - paper - author - paper (maybe another collaboration)\\
+author - paper - journal/conference - paper (maybe the work co-related)\\
+paper - author - affiliation - author (potential co-author, weak implication)
+
+\subsection{Indirect Connections Adding Topics}
+Length 2:\\
+author - paper - topic (get the research interests)\\
+author - affiliation - topic (weak implication! we may not use it)\\
+author - topic - paper (whether the author wrote the paper or not)\\
+author - topic - author (potential co-author)\\
+author - topic - journal/conference (journal/conference the author may publish paper in)\\
+paper - journal - topic (if missing the keywords)\\
+Length 3:\\
+author - paper - author - topic (the co-author's topics may be the author's topics)\\
+author - paper - journal/conference - topics\\
+paper - author - paper - affiliation (may not exist usually, but some researches of an author can be highly co-related)\\
+author - topic - journal/conference - paper\\
+...
+
+\subsection{Path Weight Decadence}
+Linear: $weight = 1 - \alpha(length - 1)$\\
+Non-linear: 
+
+\section{Prediction with Graphic Models}
+For author A and paper P we compute the grading which indicate $P(A\ wrote\ P)$:
+\subsection{Just Find the Paths}
+1. figure out all the paths from A to P\\
+2. $P(A\ wrote\ P) \propto \#path$
+
+\subsection{Shortest Path}
+1. assigning weights of each edge (path of length 1)\\
+2. figure out the shortest path
+
+\subsection{Additive Path}
+1. figure out all the path and assigning weights (decade regards to the length, or just add up the weights)\\
+2. sum up the weights of the paths
+
+\subsection{Probabilistic Models}
+1. first-order Markov chain: $P(path) \propto \prod_i P(object_{i+1}|object_{i})$\\
+2. (k-order) Markov model: $P(path) \propto \prod_i P(object_{i+1}|object_{i-k}, ..., object_i)$\\
+3. $P(A\ wrote\ P) = 1 - \prod (1 - P(path))$
+\end{document}
