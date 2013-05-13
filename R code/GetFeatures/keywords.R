@@ -6,6 +6,11 @@
 setwd("F:/kdd/2013 kdd/rda")
 load("F:/kdd/2013 kdd/rda/paper.rda")
 keyword=as.character(paper$keyword)
+notNULL=which(keyword!="")
+keyword=gsub("(\\w+)", "\\L\\1",keyword, perl=TRUE)
+
+
+
 
 #以下内容相关正则表达式的部分
 #请参照正则表达式语法：http://msdn.microsoft.com/zh-cn/library/ae5bf541(v=vs.80).aspx
@@ -91,6 +96,7 @@ splitkey<-function(keyword)
 }
 
 s=splitkey(keyword)
+ss=splitkey(firstkey[notNULL])
 #####just for stat #####
 pasteind<-function(vector)
 {
@@ -149,14 +155,15 @@ get.key.cate<-function(vector)
                ,vector,perl=T)&grepl("\\s[12][0-9]{3}\\s",vector,perl=T)]=""
   vector=vector[vector!=""]
   a=matrix(unlist(lapply(vector,get.cate)),ncol=2,byrow=T)
-  cate=paste(unique(a[,1][a[,1]!=""]),collapse=";")
+  #cate=paste(unique(a[,1][a[,1]!=""]),collapse=";")
+  cate=unique(a[,1][a[,1]!=""])
   key=a[,2][a[,2]!=""]
   return(list(cate=cate,key=key))
 }
 
 key.cate=lapply(key[keyword!=""],get.key.cate)
 
-cate=unlist(lapply(key.cate,function(x) x$cate))
+cate=lapply(key.cate,function(x) x$cate)
 key2=lapply(key.cate,function(x) x$key)
 
 
@@ -180,8 +187,8 @@ modify.word<-function(word)
   a=gregexpr("[a-z]\\.",word,perl=T)
   if (any((a[[1]]+1)==n))
     word=substr(word,1,n-1)
-  if (grepl("[a-z]",word,perl=T))
-    word=gsub("(\\w+)", "\\L\\1",word, perl=TRUE)
+  #if (grepl("[a-z]",word,perl=T))
+ #   word=gsub("(\\w+)", "\\L\\1",word, perl=TRUE)
   word=unlist(strsplit(paste(" ",word," "),stopword,perl=T))
   word=word[word!=""]
   word=strsplit(word," ")
@@ -244,10 +251,10 @@ get.key.subkey<-function(vector)
   words=c(words[l1<=4],unlist(w[l1>4]))
   subkey=c(subkey[l2<=4],unlist(s[l2>4]))
   
-  notN1=grepl("[0-9]",words,perl=T)
-  notN2=grepl("[0-9]",subkey,perl=T)
-  words=words[words!=""&words!="character(0)"&notN1==F]
-  subkey=subkey[subkey!=""&subkey!="character(0)"&notN2==F]
+  notN1=grepl("[^0-9]",words,perl=T)
+  notN2=grepl("[^0-9]",subkey,perl=T)
+  words=words[words!=""&words!="character(0)"&notN1==T]
+  subkey=subkey[subkey!=""&subkey!="character(0)"&notN2==T]
   return(list(Words=words,Subkey=subkey))      
 }
 
@@ -257,6 +264,21 @@ kk2=lapply(key2,get.key.subkey)
 key3=lapply(kk2,function(x) x$Words)
 subkey=lapply(kk2,function(x) x$Subkey)
 ll=unlist(lapply(subkey,length))
+
+
+ind=which(keyword!=""|title!="")
+keyind=which(keyword!="")
+c=as.list(rep("",length(keyword)))
+Cate=c
+Cate[keyind]=cate
+Key=c
+Key[keyind]=key3
+Subkey=c
+Subkey[keyind]=subkey
+save(Cate,file="Cate.rda")
+save(Key,file="Key.rda")
+save(Subkey,file="Subkey.rda")
+
 
 
 
