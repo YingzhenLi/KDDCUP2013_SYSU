@@ -1,19 +1,39 @@
 
 ####for more details, please download the pdf:
 ## http://cran.r-project.org/web/packages/topicmodels/vignettes/topicmodels.pdf
-
+library(topicmodels)
 library("slam")
-summary(col_sums(dtm))
 
-term_tfidf <-tapply(dtm$v/row_sums(dtm)[dtm$i], dtm$j, mean) *
-  log2(nDocs(dtm)/col_sums(dtm > 0))
-summary(term_tfidf)
 
-dtm <- dtm[,term_tfidf >= 0.26]
-dtm <- dtm[row_sums(dtm) > 0,]
+#alpha is the times by min(term_tfidf)
+reduce.dtm<-function(mat,n=16)
+{
+  dtm <- as.DocumentTermMatrix(mat,weighting =weightTf,
+                               control = list(stemming = TRUE, stopwords = TRUE, removePunctuation = TRUE,tolower=T))
+  
+  tf=col_sums(dtm)
+  nn=setdiff(order(tf,decreasing=T)[1:n],which(col=="comput"))
+  
+  #term_tfidf <-tapply(dtm$v/row_sums(dtm)[dtm$i], dtm$j, mean) *
+  #  log2(nDocs(dtm)/col_sums(dtm > 0))
+  #summary(term_tfidf)
+  
+  dtm <- dtm[,-nn]
+  dtm <- dtm[row_sums(dtm) > 0,]
+  return(dtm)
+}
+dtm<-reduce.dtm(mat,n=16)
+
+##for the dissimilarity distance #####
+dist_dtm <- as.matrix(dissimilarity(dtm, method = 'cosine'))
+
+
+
+
+
 summary(col_sums(dtm))
 dim(dtm)
-library("topicmodels")
+
 
 # k selection from the gibbs procedure
 # using the metric of perplexity and loglikelihood
@@ -90,7 +110,7 @@ plot(x=k,y=m_log)
 k[which.max(m_log)] #20 is the max
 #choose 30 as a balance of two
 
-k <- 30
+k <- 20
 SEED <- 2013
 TM <- list(VEM = LDA(dtm, k = k, control = list(seed = SEED)),
            VEM_fixed = LDA(dtm, k = k,
@@ -119,5 +139,23 @@ Terms[,1:5]
 #a[[2]] stores the topic distribution for every topic
 #look for the details by yourself
 a=posterior(TM[["VEM"]])
+library(cluster)
+dist_dto=as.matrix(daisy(a[[2]]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+aa=data.frame(std=apply(a[[2]],1,sd),ind=c(rep(0,14),rep(1,641-14)))
+boxplot(std~ind,data=aa)
 
 

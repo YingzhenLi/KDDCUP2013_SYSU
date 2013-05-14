@@ -15,3 +15,4 @@ tm_stops=c(
 
 #cap_tm_stops=gsub("\\b(\\w)", "\\U\\1",tm_stops, perl=TRUE)    ###first letter capitalized
 stops=c(Jan,Zh,tm_stops)
+save(stops,file="stops.rda")

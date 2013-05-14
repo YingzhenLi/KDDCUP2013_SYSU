@@ -1,4 +1,7 @@
 
+library(tm)
+load("F:/kdd/2013 kdd/rda/title.split.result.rda")
+title=title.split.result
 
 en_stop=paste("(\\s",paste(stopwords("en"),collapse="\\s)|(\\s"),"\\s)",sep="")
 
@@ -21,4 +24,8 @@ clean.title<-function(t)
   }
   return(t)
 }
-tt=clean.title(title.split.result[title!=""])
+
+title_key=as.list(rep("",length(title)))
+title_key[title!=""]=clean.title(title.split.result[title!=""])
+save(title_key,file="title_key.rda")
+
