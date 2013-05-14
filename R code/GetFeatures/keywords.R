@@ -1,12 +1,12 @@
 
-
+library("")
 #以下内容如有时间请帮忙检查，欢迎补充及修改
 
 #请自设默认路径
 setwd("F:/kdd/2013 kdd/rda")
 load("F:/kdd/2013 kdd/rda/paper.rda")
 keyword=as.character(paper$keyword)
-notNULL=which(keyword!="")
+notNULL=which(keyword!=""&is.na(keyword)==F)
 keyword=gsub("(\\w+)", "\\L\\1",keyword, perl=TRUE)
 
 
