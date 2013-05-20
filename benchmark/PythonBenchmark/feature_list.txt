@@ -1,0 +1,6 @@
+AuthorConferenceCounts
+AuthorJournalCounts
+AuthorPaperCounts
+PaperAuthorCounts
+SumAuthorsIn##DataTable##PaperYear
+SumPapersIn##DataTable##WithCoAuthors
