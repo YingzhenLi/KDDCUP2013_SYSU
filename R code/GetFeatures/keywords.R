@@ -1,5 +1,5 @@
 
-library("")
+
 #以下内容如有时间请帮忙检查，欢迎补充及修改
 
 #请自设默认路径
@@ -7,6 +7,8 @@ setwd("F:/kdd/2013 kdd/rda")
 load("F:/kdd/2013 kdd/rda/paper.rda")
 keyword=as.character(paper$keyword)
 notNULL=which(keyword!=""&is.na(keyword)==F)
+#keyword[notNULL]=""
+keyword=keyword[notNULL]
 keyword=gsub("(\\w+)", "\\L\\1",keyword, perl=TRUE)
 
 
@@ -30,11 +32,11 @@ key.trim<-function(word)
 {
   end=nchar(word)+2
   a=gregexpr("[\\(\\-—.,\\s:]*index[\\s-—]*terms*[\\s:.\\-—,;]*",word,perl=T,ignore.case=T)
+  show(word);show(a);
   if (a[[1]][1]!=-1)
     word=substr(word,a[[1]][1]+attr(a[[1]],"match.length")[1],end)
   
   a=gregexpr("[\\(\\-—.,\\s:]*Key[\\s-—]*words(\\sand\\sphrases)*[\\s:.\\-—,;]*",word,perl=T,ignore.case=T)
-  show(a[[1]][1])
   if (a[[1]][1]==-1) return(c(word,""))
   
   start=a[[1]][1]+attr(a[[1]],"match.length")[1]
@@ -48,13 +50,14 @@ key.trim<-function(word)
   if (a[[1]][1]>1)
   {
     spl=unlist(strsplit(word,substr(word,a[[1]][1],start),fixed=T))
+    if (is.na(spl[2])) spl[2]=spl[1]
     return(spl[2:1])
   }
 }
 
-a=unlist(gregexpr("Key[\\s\\-—]*words",keyword,perl=T,ignore.case=T))
-b=unlist(gregexpr("index[\\s\\-—]*terms",keyword,perl=T,ignore.case=T))
-index=which(a>0|b>0)
+a=grepl("Key[\\s\\-—]*words",keyword,perl=T,ignore.case=T)
+b=grepl("index[\\s\\-—]*terms",keyword,perl=T,ignore.case=T)
+index=which(a|b)
 kk=lapply(keyword[index],key.trim)
 k=matrix(unlist(kk),ncol=2,byrow=T)
 keyword[index]=k[,1]
@@ -96,7 +99,7 @@ splitkey<-function(keyword)
 }
 
 s=splitkey(keyword)
-ss=splitkey(firstkey[notNULL])
+#ss=splitkey(firstkey[notNULL])
 #####just for stat #####
 pasteind<-function(vector)
 {
@@ -130,11 +133,11 @@ get.cate<-function(words)
   a=unlist(strsplit(words,"\\s+",perl=T))
   a=a[grepl("\\[[0-9]+\\]",a,perl=T)==F]
   a=a[a!=""]
-  show(words)
+#  show(words)
   #if (a[1]==""|length(grep("[\\s:—-]+",a[1],perl=T))==1) a=a[-1]
   words=paste(a,collapse=" ")
   b=gregexpr("\\s-\\s",words,perl=T)
-  show(length(b[[1]]))
+#  show(length(b[[1]]))
   if (b[[1]][1]!=-1)
   {
     new=unlist(strsplit(words,"\\s-\\s",perl=T))
@@ -150,10 +153,13 @@ get.cate<-function(words)
 
 get.key.cate<-function(vector)
 {
+  show(vector)
   vector[grepl("(http)|(www)",vector,perl=T)]=""
   vector[grepl(paste("(\\s",paste(c(month.name,month.abb),collapse="\\s)|(\\s"),"\\s)",sep="")
                ,vector,perl=T)&grepl("\\s[12][0-9]{3}\\s",vector,perl=T)]=""
   vector=vector[vector!=""]
+  if (length(vector)==0) return(list(cate="",key=""))
+  show(vector)
   a=matrix(unlist(lapply(vector,get.cate)),ncol=2,byrow=T)
   #cate=paste(unique(a[,1][a[,1]!=""]),collapse=";")
   cate=unique(a[,1][a[,1]!=""])
@@ -161,7 +167,16 @@ get.key.cate<-function(vector)
   return(list(cate=cate,key=key))
 }
 
-key.cate=lapply(key[keyword!=""],get.key.cate)
+
+ind1=which(!unlist(lapply(key,function(x) all(x==""))))
+
+key.cate=list()
+for (i in 1:length(ind1))
+{
+  show(i)
+  key.cate[[i]]=get.key.cate(key[[ind1[i]]])
+}
+
 
 cate=lapply(key.cate,function(x) x$cate)
 key2=lapply(key.cate,function(x) x$key)
@@ -183,6 +198,7 @@ stopword=paste("(\\s+",paste(stopwords("en"),collapse="\\s+)|(\\s+"),"\\s+)",sep
 
 modify.word<-function(word)
 {
+  word1=word
   n=nchar(word)
   a=gregexpr("[a-z]\\.",word,perl=T)
   if (any((a[[1]]+1)==n))
@@ -193,6 +209,7 @@ modify.word<-function(word)
   word=word[word!=""]
   word=strsplit(word," ")
   word=unlist(lapply(word,function(x) {x=x[x!=""]; x=paste(x,collapse=" ")}))
+  if (length(word)==0) return(word1)
   return(word)
 }
 #modify.word("aef (aef)")
@@ -260,15 +277,24 @@ get.key.subkey<-function(vector)
 
 #get.key.subkey(key[test>0][[33]])
 
+kk2=list()
+for (i in 1:length(key2))
+{
+  show(i)
+  kk2[[i]]=get.key.subkey(key2[[i]])
+}
+
+
+
 kk2=lapply(key2,get.key.subkey)
 key3=lapply(kk2,function(x) x$Words)
 subkey=lapply(kk2,function(x) x$Subkey)
 ll=unlist(lapply(subkey,length))
 
 
-ind=which(keyword!=""|title!="")
-keyind=which(keyword!="")
-c=as.list(rep("",length(keyword)))
+
+keyind=notNULL[ind1]
+c=as.list(rep("",nrow(paper)))
 Cate=c
 Cate[keyind]=cate
 Key=c

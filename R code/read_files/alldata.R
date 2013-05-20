@@ -23,28 +23,39 @@ dbDisconnect(con)
 dbUnloadDriver(drv)
 
 ### convert to utf-8 #####
-recoding<-function(vec)
-{
-  Encoding(vec)="UTF-8"
-  return(vec)
-}
-options(stringsAsFactors = FALSE)
-author23=data.frame(apply(author[,2:3],2,recoding))
-paper26=data.frame(apply(paper[,c(2,6)],2,recoding))
-conference234=data.frame(apply(conference[,2:4],2,recoding))
-journal234=data.frame(apply(journal[,2:4],2,recoding))
-paperauthor34=data.frame(apply(paperauthor[,3:4],2,recoding))
 
-author=unique(data.frame(id=author[,1],author23))
-paper=unique(data.frame(id=paper$id,year=paper$year,conferenceid=paper$conferenceid,journalid=paper$journalid
-                 ,paper26))
-conference=unique(data.frame(id=conference$id,conference234))
-journal=unique(data.frame(id=journal$id,journal234))
-conference=unique(data.frame(id=conference$id,conference234))
-paperauthor=unique(data.frame(paperid=paperauthor$paperid,authorid=paperauthor$authorid,paperauthor34))
+options(stringsAsFactors = FALSE)
+
+Encoding(author$name)="UTF-8"
+Encoding(author$affiliation)="UTF-8"
+
+Encoding(paper$title)="UTF-8"
+Encoding(paper$keyword)="UTF-8"
+
+
+Encoding(conference$shortname)="UTF-8"
+Encoding(conference$fullname)="UTF-8"
+Encoding(conference$homepage)="UTF-8"
+
+Encoding(journal$shortname)="UTF-8"
+Encoding(journal$fullname)="UTF-8"
+Encoding(journal$homepage)="UTF-8"
+
+Encoding(paperauthor$name)="UTF-8"
+Encoding(paperauthor$affiliation)="UTF-8"
+
+author=unique(author)
+paper=unique(paper)
+conference=unique(conference)
+journal=unique(journal)
+paperauthor=unique(paperauthor)
+trainconfirmed=unique(trainconfirmed)
+traindeleted=unique(traindeleted)
+validpaper=unique(validpaper)
+
 
 #set session first
-setwd("F:/kdd/2013 kdd/rda")
+
 save(author,file="author.rda")
 save(paper,file="paper.rda")
 save(conference,file="conference.rda")

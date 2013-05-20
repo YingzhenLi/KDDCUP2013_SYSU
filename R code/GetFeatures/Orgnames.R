@@ -1,12 +1,5 @@
 
 
-library(tm)
-library(RWeka)
-library(Snowball)
-load("F:/kdd/2013 kdd/rda/conference.rda")
-load("F:/kdd/2013 kdd/rda/author.rda")
-
-
 #####remove the stops, punctuation,number and lower the letters ####
 #### get the single words, not the phrases #######
 removeStops<-function(corpus,stops,m=1000)
@@ -49,14 +42,7 @@ J_skey=deNoise(journal$shortname,stem=F,lower=F)
 C_fkey=deNoise(conference$fullname)
 C_skey=deNoise(conference$shortname,stem=F,lower=F)
 
-author$affiliation=as.character(author$affiliation)
-aff=unique(author$affiliation[author$affiliation!=""])
-A_aff=deNoise(aff)
 
-#remove the department name
-A_aff=lapply(A_aff,function(x) x=x[grepl("([\\sa-z])*((univers|univ)|(depart|dept.*)|(lab)|(school)|(instit|inst.*))([\\sa-z])*",
-                                     x,perl=T)==F])
-comA_aff=lapply(A_aff,function(x) x=table(x[x!=""]))
 
 #combine names 
 comName<-function(full,short)
@@ -82,7 +68,7 @@ comCN=comName(C_fkey,C_skey)
 
 save(comJN,file="comJN.rda")
 save(comCN,file="comCN.rda")
-save(A_aff,file="A_aff.rda")
+
 
 
 

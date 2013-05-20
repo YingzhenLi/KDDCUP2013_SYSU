@@ -1,0 +1,10 @@
+上传rda 文件夹中的stops.rda
+按照下列顺序运行：
+alldata.R 
+functions.R 
+keywords.R 
+title_zhu.R 
+combine_features.R
+Orgnames.R
+get_matrix.R 
+get_matrix_features.R
