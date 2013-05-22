@@ -23,6 +23,8 @@ getConcret=function(word,finger,freq)
 	for (i in 1:n)
 	{
 		#tmp=word[[i]]
+		if (i %% 100 ==0)
+			show(i)
 		tmp=unlist(strsplit(word[i]," "))
 		tfp=finger[i]
 		tfreq=freq[i]
@@ -39,6 +41,8 @@ getConcret=function(word,finger,freq)
 				ind1=getind(a1,finger)
 				ind2=getind(a2,finger)
 				tmxp=log(freq[ind1])+log(freq[ind2])
+				if (length(tmxp)>1)
+					browser()
 				if (!is.na(tmxp))
 					mxp=max(mxp,tmxp)
 			}

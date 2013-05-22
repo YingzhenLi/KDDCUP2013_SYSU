@@ -106,6 +106,8 @@ SentenceSplit=function(txt,d0=c(1,4),ent0=0,freq0=0,conc0=0)
 
 #running on the sample part
 
+source("phrase segmentation.R")
+
 #keywords
 tmp=SentenceSplit(paper[,6])#217 secs
 keywords.bag=tmp[[1]]
