@@ -6,6 +6,7 @@
 # object: author, paper, affiliation, journal, conference
 
 import re
+import data_io
 
 table_dict = {'author': ['Author', 'PaperAuthor'], 'paper': ['Paper', 'PaperAuthor'], 'affiliation': ['Author', 'PaperAuthor'], 'journal': ['Paper'], 'conference': ['Paper']}
 
@@ -32,8 +33,8 @@ def is_connected(conn, arg1_name, arg1_value, arg2_name, arg2_value):
 	    	"""
 	query = query.replace('#arg1#', query_dict[table_name][arg1_name])
 	query = query.replace('#arg2#', query_dict[table_name][arg2_name])
-	query = query.replace('#arg1value#', re.sub(r'[[]', '(', re.sub(r'[]]', ')', arg1_value)))
-	query = query.replace('#arg2value#', re.sub(r'[[]', '(', re.sub(r'[]]', ')', arg1_value)))
+	query = query.replace('#arg1value#', re.sub(r'[[]', '(', re.sub(r'[]]', ')', str(arg1_value))))
+	query = query.replace('#arg2value#', re.sub(r'[[]', '(', re.sub(r'[]]', ')', str(arg2_value))))
 	query = query.replace('#DataTable#', table_name)
 	cursor.execute(query)
 	res = cursor.fetchall()
@@ -52,9 +53,8 @@ def get_connected_objects(conn, arg1_name, arg1_value, arg2_name):
     cursor = conn.cursor()
     if type(arg1_value) == int:
 	arg1_value = [arg1_value]
-    if type(arg2_value) == int:
-	arg2_value = [arg2_value]
     res = []
+    temp = []
     for table_name in searching_table:
 	query = """
 	        SELECT #arg1#, #arg2# FROM #DataTable#
@@ -62,36 +62,32 @@ def get_connected_objects(conn, arg1_name, arg1_value, arg2_name):
 	    	"""
 	query = query.replace('#arg1#', query_dict[table_name][arg1_name])
 	query = query.replace('#arg2#', query_dict[table_name][arg2_name])
-	query = query.replace('#arg1value#', re.sub(r'[[]', '(', re.sub(r'[]]', ')', arg1_value)))
+	query = query.replace('#arg1value#', re.sub(r'[[]', '(', re.sub(r'[]]', ')', str(arg1_value))))
 	query = query.replace('#DataTable#', table_name)
+	print query
 	cursor.execute(query)
 	res.extend(map(list, cursor.fetchall()))
-    objects = []
-    for obs in res:
-	objects = list(set(objects) & set(obs))	# no overlapping
-    return objects
+    if len(searching_table) > 1:
+    	for obs in res:
+	    temp = list(set(temp) & set(obs))	# no overlapping
+    else:
+	temp = res
+    neighbors = {x: set() for x in arg1_value}
+    print temp
+    for neighbor in temp:
+	neighbors[neighbor[0]].add(neighbor[1])
+    return neighbors
 
 def get_neighbors(conn, arg1_name, arg1_value):
     # search for all the neighbors (any arg2_name) of arg1_name object arg1_value
     global table_dict	# any other improvement?
-    neighbors = dict{}
-    for arg2_name in table_dict[arg1_name]:
+    neighbors = dict()
+    arg2_list = set()
+    for table_name in table_dict[arg1_name]:
+	arg2_list = arg2_list.union(set(query_dict[table_name].keys()))
+    arg2_list = arg2_list - set([arg1_name])
+    for arg2_name in arg2_list:
 	# here we automatically categorized the neighbors
 	neighbors[arg2_name] = get_connected_objects(conn, arg1_name, arg1_value, arg2_name)
     return neighbors
 
-def get_path_length(conn, arg1_name, arg1_value, arg2_name, arg2_value, stop, path_length = 0):
-    # get 0 if the two objects are without path connection
-    # full searching? horrible! so we defined the upbound of path length 'stop'
-    # if defining connection weights we can instead search the shortest path
-    if len(is_connected(conn, arg1_name, arg1_value, arg2_name, arg2_value))!= 0:
-	return path_length + 1
-    neighbors_arg1 = get_neighbors(conn, arg1_name, arg1_value)
-    path_length = path_length + 1
-    for arg_name in neighbors_arg1:
-	path_length = get_path_length(conn, arg_name, neighbors_arg1[arg_name], arg2_name, arg2_value, stop - 1, path_length)	# horrible computation!
-    	if path_length <= stop:
-	    return path_length
-    return stop + 1	# we use stop + 1 to represent infinity
-
-		
