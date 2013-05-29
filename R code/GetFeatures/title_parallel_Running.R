@@ -1,18 +1,20 @@
-
+#cd KDDCUP2013_SYSU/R\ code/GetFeatures
+#nohup Rscript title_parallel_Running.R &> title_parallel_Running_log &
+#vi title_parallel_Running_log
+#cd kdd_data/rda
 #running on the sample part
 
 source("title_parallel_functions.R")
 
-#keywords
-tmp=SentenceSplit(paper[,6])#217 secs, with parallel in 200 secs
-keywords.bag=tmp[[1]]
-keywords.split.result=tmp[[2]]
-save(keywords.bag,file="keywords.bag.rda")
-save(keywords.split.result,file="keywords.split.result.rda")
+setwd("~/kdd_data/rda")
+load("paper.rda")
 
 #title
-tmp=SentenceSplit(paper[,5])#2846 secs, with parallel in secs
+tmp=SentenceSplit(paper[,2])#2846 secs, with parallel in secs
 title.bag=tmp[[1]]
 title.split.result=tmp[[2]]
-save(title.bag,file="title.bag.rda")
-save(title.split.result,file="title.split.result.rda")
+save(title.bag,file="full.title.bag.rda")
+save(title.split.result,file="full.title.split.result.rda")
+
+#923 on 20
+#10567 on 9

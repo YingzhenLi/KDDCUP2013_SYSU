@@ -238,6 +238,7 @@ divText=function(txt,result)
 	j=1
 	for (i in 1:n)
 	{
+		#show(i)
 		sent=unlist(strsplit(txt[i],"[^A-Za-z]"))
 		sent=sent[sent!=""]
 		m=length(sent)
@@ -254,15 +255,16 @@ divText=function(txt,result)
 	return(ans)
 }
 
-SentenceSplit=function(txt,d0=c(1,4),ent0=0,freq0=0,conc0=0)
+SentenceSplit=function(txt,d0=c(1,4),ent0=0,freq0=0,conc0=0,cores=10)
 {
 	prt=proc.time()
     require(parallel)
     require(entropy)
     #Linux Version:
-    mc <- getOption("mc.cores", 6)
+    mc <- getOption("mc.cores", cores)
     #Windows Version:
-    #cl <- makeCluster(getOption("cl.cores", 2))
+	#mc <- getOption("cl.cores", cores)
+    cl <- makeCluster(mc)
 	
     txt=as.character(txt)
     x=txt
@@ -275,7 +277,7 @@ SentenceSplit=function(txt,d0=c(1,4),ent0=0,freq0=0,conc0=0)
 	#Windows Version:
     #res <- parLapply(cl, 1:d0[2], getAllPhrases, x)
 	#Linux Version
-    res <- mclapply(1:d0[2], getAllPhrases, StrData, mc.cores = mc)
+    res <- mclapply(1:d0[2], getAllPhrases, x, mc.cores = mc)
 	#show(proc.time()-prt)
 	prt=proc.time()
     n=length(res)
@@ -294,10 +296,6 @@ SentenceSplit=function(txt,d0=c(1,4),ent0=0,freq0=0,conc0=0)
 	ansFinger=ansFinger[ind]
 	ansWord=ansWord[ind]
 	n=length(ind)
-	tmp=NULL
-	for (i in 1:n)
-		tmp[i]=paste(ansWord[[i]],collapse=" ")
-	ansWord=tmp
 	ansFreq=ansFreq[ind]
 	ansEntropy=ansEntropy[ind]
 	
@@ -307,7 +305,7 @@ SentenceSplit=function(txt,d0=c(1,4),ent0=0,freq0=0,conc0=0)
 	#Windows Version
     #res2 <- parLapply(cl, 1:n, getConcret, ansWord,ansFinger,ansFreq)
 	#Linux Version
-    res2 <- mclapply(1:n, getConcret, ansWord,ansFinger,ansFreq, mc.cores = mc)
+    res2 <- mclapply(1:n,getConcret, ansWord,ansFinger,ansFreq, mc.cores = mc)
 	#show(proc.time()-prt)
 	prt=proc.time()
     ansConcrete=unlist(res2)
