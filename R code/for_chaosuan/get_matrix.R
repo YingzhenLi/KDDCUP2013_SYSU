@@ -1,5 +1,7 @@
 
-source("functions.R")
+
+setwd("~/kdd_data/rda")
+source("~/KDDCUP2013_SYSU/R\ code/GetFeatures/functions.R")
 load("com.rda")
 load("com_all.rda")
 load("comJN.rda")
@@ -21,7 +23,7 @@ save(aff_dtm,file="aff_dtm.rda")
 #####get topic models###
 
 # aff_col[order(col_sums(aff_dtm),decreasing=T)[1:50]]
-dist_aff_dtm <- as.matrix(dissimilarity(aff_dtm, method = 'cosine'))
+dist_aff_dtm <- as.matrix(dissimilarity(aff_dtm[1:10,], method = 'cosine'))
 save(dist_aff_dtm,file="dist_aff_dtm.rda")
 aff_mat=get.auau.distMat(author,dist_aff_dtm)  #this matrix is consistent with the first one
 save(aff_mat,file="aff_mat.rda")
