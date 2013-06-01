@@ -52,5 +52,5 @@ if rank == 0:
 		output = output + words[j] + ' ' + counts[j] + ' '
 	    outputs = outputs + output[:-1] + '\n'
 	    startpoint = startpoint + 1
-    f3.write(outputs)
+	f3.write(outputs)
 
