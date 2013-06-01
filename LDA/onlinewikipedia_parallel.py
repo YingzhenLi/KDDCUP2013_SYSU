@@ -20,7 +20,7 @@
 
 import cPickle, string, numpy, getopt, sys, random, time, re, pprint
 
-import onlineldavb
+import onlineldavb_parallel as onlineldavb
 import wikirandom
 from mpi4py import MPI
 
@@ -33,7 +33,8 @@ def main():
     size = comm.Get_size()   
     rank = comm.Get_rank()
     # The number of documents to analyze each iteration
-    batchsize = 3
+    D = 3.3e6
+    batchsize = 10
     # The number of topics
     K = 100
 
@@ -45,7 +46,7 @@ def main():
     olda = onlineldavb.OnlineLDA(vocab, K, D, 1./K, 1./K, 1024., 0.7)
     # Run until we've seen D documents. (Feel free to interrupt *much*
     # sooner than this.)
-    if rank != 0:	# slaves
+    for iteration in range(3):	# slaves
         # Download some articles
         (docset, articlenames) = \
             wikirandom.get_random_wikipedia_articles(batchsize)
@@ -55,7 +56,7 @@ def main():
         (wordids, wordcts) = onlineldavb.parse_doc_list(docset, olda._vocab)
         perwordbound = bound * len(docset) / (D * sum(map(sum, wordcts)))
         print '%d:  rho_t = %f,  held-out perplexity estimate = %f' % \
-            (iteration, olda._rhot, numpy.exp(-perwordbound))
+            (iteration+1, olda._rhot, numpy.exp(-perwordbound))
 
         # Save lambda, the parameters to the variational distributions
         # over topics, and gamma, the parameters to the variational

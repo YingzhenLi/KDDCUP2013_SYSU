@@ -20,7 +20,7 @@
 
 import cPickle, string, numpy, getopt, sys, random, time, re, pprint
 
-import onlineldavb
+import onlineldavb_parallel as onlineldavb
 import wikirandom
 
 def main():

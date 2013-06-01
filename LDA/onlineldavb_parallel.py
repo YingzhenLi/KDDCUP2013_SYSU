@@ -64,14 +64,14 @@ def parse_doc_list(docs, vocab):
     wordcts = list()
     for d in range(0, D):
         docs[d] = docs[d].lower()
-        docs[d] = re.sub(r'-', ' ', docs[d])
-        docs[d] = re.sub(r'[^a-z ]', '', docs[d])
-        docs[d] = re.sub(r' +', ' ', docs[d])
-        words = string.split(docs[d])
+        #docs[d] = re.sub(r'-', ' ', docs[d])
+        #docs[d] = re.sub(r'[^a-z ]', '', docs[d])
+        #docs[d] = re.sub(r' +', ' ', docs[d])
+        words = docs[d].split(';')
         ddict = dict()
-        for word in words:
-            if (word in vocab):
-                wordtoken = vocab[word]
+        for i in range(len(words)):
+            if (words[i] in vocab):
+                wordtoken = vocab[words[i]]
                 if (not wordtoken in ddict):
                     ddict[wordtoken] = 0
                 ddict[wordtoken] += 1
