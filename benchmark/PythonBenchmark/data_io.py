@@ -45,18 +45,18 @@ def write_submission(predictions):
 
 def get_features_db(table_name):
     conn = get_db_conn()
-    feature_view_list = open("feature_view_list.txt").read().split()	# load the feautures
-    for feature_view_name in feature_view_list:
-	feature_view_name = feature_view_name.replace("##DataTable##", table_name)
-    	if not view_existence_db(feature_view_name, conn):	# feature view not exist
-	    create_view(feature_view_name, conn)	# create feature view
+    feature_table_list = open("feature_list.txt").read().split()	# load the feautures
+    for feature_table_name in feature_table_list:
+	feature_table_name = feature_table_name.replace("##DataTable##", table_name)
+    	if not table_view_existence_db(feature_table_name, conn):	# feature view/table not exist
+	    create_table(feature_table_name, conn)	# create feature view
     query = get_features_query(table_name)
     cursor = conn.cursor()
     cursor.execute(query)
     res = cursor.fetchall()
     return res
 
-def view_existence_db(feature_view_name, conn):
+def table_view_existence_db(feature_view_name, conn):
     query = """
 	select count(*) from pg_class where relname = '##DataTable##'
     """
@@ -75,7 +75,19 @@ def create_view(feature_view_name, conn):
     del cursor
     gc.collect()
     res = True	# no check
-    #res = view_existence_db(feature_view_name, conn)	# check if successfully created
+    #res = table_view_existence_db(feature_view_name, conn)	# check if successfully created
+    return res
+
+def create_table(feature_table_name, conn):
+    query = open("feature_table/" + feature_table_name + ".sql").read().strip()
+    cursor = conn.cursor()
+    cursor.execute(query)
+    conn.commit()
+    # if running in the supercomputer, we keep the data in the memory
+    del cursor
+    gc.collect()
+    res = True	# no check
+    #res = table_view_existence_db(feature_view_name, conn)	# check if successfully created
     return res
 
 def drop_view(feature_view_name, conn):
@@ -88,7 +100,20 @@ def drop_view(feature_view_name, conn):
 	conn.cursor.execute(query)
 	conn.commit()
     res = True	# no check
-    #res = not view_existence_db(feature_view_name, conn)	# check if successfully dropped
+    #res = not table_view_existence_db(feature_view_name, conn)	# check if successfully dropped
+    return res
+
+def drop_table(feature_table_name, conn):
+    # no use
+    if view_existence_db(feature_table_name, conn):
+	query = """
+		drop view ##DataTable##
+	"""
+	query = query.replace("##DataTable##", feature_table_name.lower())
+	conn.cursor.execute(query)
+	conn.commit()
+    res = True	# no check
+    #res = not table_view_existence_db(feature_view_name, conn)	# check if successfully dropped
     return res
 
 def get_features_query(table_name):
